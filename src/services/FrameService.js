@@ -1,12 +1,14 @@
 import axios from 'axios';
+
 const FRAME_API_BASE_URL = "http://localhost:9091/lenscart/frame";
+
 class FrameService{
-    
-	getFrames() {
+
+	getAllFrames() {
 		return axios.get(FRAME_API_BASE_URL);
 	}
 
-	createFrame(frame) {
+	addFrame(frame) {
 		return axios.post(FRAME_API_BASE_URL, frame);
 	}
 
