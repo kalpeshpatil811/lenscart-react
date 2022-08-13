@@ -1,112 +1,156 @@
 import React, { useState } from "react";
-import { makeStyles, TextField, Button } from "@material-ui/core";
+import GlassService from "../../services/GlassService";
 import { useNavigate } from "react-router-dom";
-import MovieService from "../../Services/GlassService";
-
-const useStyles = makeStyles((theme) => ({
-	root: {
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
-		alignItems: "center",
-		padding: theme.spacing(2),
-
-		"& .MuiTextField-root": {
-			margin: theme.spacing(1),
-			width: "300px",
-		},
-		"& .MuiButtonBase-root": {
-			margin: theme.spacing(2),
-		},
-	},
-}));
 
 const AddGlass = () => {
-	const classes = useStyles();
-	// create state variables for each input
-	const [glassId, setGlassId] = useState("");
+	// Create state variables for each input field
 	const [glassName, setGlassName] = useState("");
+	const [brand, setBrand] = useState("");
+	const [price, setPrice] = useState("");
 	const [type, setType] = useState("");
-    const [powerRange, setPowerRange] = useState("");
-    const [brand, setBrand] = useState("");
-    const [glassImage, setGlassImage] = useState("");
-    const [price, setPrice] = useState("");
+	const [powerRange, setPowerRange] = useState("");
+	const [glassImage, setGlassImage] = useState("");
 	const navigate = useNavigate();
-
-	const handleClose = () => {
-		navigate("/showmovies");
-	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const responseBody = {
-			movieId: movieId,
-			movieName: movieName,
-			description: description,
-			prize: prize,
+		const newGlass = {
+			glassName: glassName,
+			brand: brand,
+			price: price,
+			type: type,
+			powerRange: powerRange,
+			glassImage: glassImage,
+			
 		};
-		MovieService.createMovies(responseBody).then((res) => {
-			console.log(res);
-			handleClose();
-		});
+		console.log(newGlass);
+		GlassService.addGlass(newGlass)
+			.then((res) => {
+				console.log(res);
+				console.log("Glass added successfully");
+			})
+			.catch((err) => {
+				console.log(err);
+				console.log("Error adding Glass");
+			})
+			.finally(() => {
+				navigate("/");
+			});
 	};
 
 	return (
-		<div
-			style={{
-				minHeight: "100vh",
-				backgroundImage: "linear-gradient(to top, #37ecba 0%, #72afd3 100%)",
-			}}
-		>
-			<form className={classes.root} onSubmit={(e) => handleSubmit(e)}>
-				<TextField
-					label="Create Movie ID"
-					variant="filled"
-					required
-					value={movieId}
-					color="secondary"
-					onChange={(e) => setMovieId(e.target.value)}
-				/>
-				<TextField
-					label="Movie Name"
-					npm
-					variant="filled"
-					required
-					type="text"
-					value={movieName}
-					color="secondary"
-					onChange={(e) => setMovieName(e.target.value)}
-				/>
-				<TextField
-					label="Movie Description"
-					variant="filled"
-					required
-					type="text"
-					value={description}
-					color="secondary"
-					onChange={(e) => setDescription(e.target.value)}
-				/>
+		<div align="center">
+			<div className="card" style={{ width: "50rem" }}>
+				<form className="card-body" onSubmit={(e) => handleSubmit(e)}>
+					<h5 className="card-title">Add Glass</h5>
+					<hr />
+					{/* <!-- SunGlass Name input --> */}
+					<div className="form-outline mb-4">
+						<label className="form-label" htmlFor="sunGlassName">
+							Glass Name
+						</label>
+						<input
+							type="text"
+							id="glassName"
+							className="form-control"
+							value={glassName}
+							onChange={(e) => setGlassName(e.target.value)}
+						/>
+					</div>
 
-				<TextField
-					label="Movie Prize"
-					variant="filled"
-					required
-					type="text"
-					value={prize}
-					color="secondary"
-					onChange={(e) => setPrize(e.target.value)}
-				/>
-				<div>
-					<Button variant="contained" onClick={handleClose}>
-						Cancel
-					</Button>
-					<Button type="submit" variant="contained" color="primary">
-						Add Movie
-					</Button>
-				</div>
-			</form>
+					{/* <!-- Brand input --> */}
+					<div className="form-outline mb-4">
+						<label className="form-label" htmlFor="brand">
+							Brand
+						</label>
+						<input
+							type="text"
+							id="brand"
+							className="form-control"
+							value={brand}
+							onChange={(e) => setBrand(e.target.value)}
+						/>
+					</div>
+
+					{/* <!-- Price input --> */}
+					<div className="form-outline mb-4">
+						<label className="form-label" htmlFor="price">
+							Power Range
+						</label>
+						<input
+							type="number"
+							id="powerRange"
+							className="form-control"
+							value={powerRange}
+							onChange={(e) => setPowerRange(e.target.value)}
+						/>
+					</div>
+
+					{/* <!-- Frame Color input --> */}
+					<div className="form-outline mb-4">
+						<label className="form-label" htmlFor="frameColor">
+							Type
+						</label>
+						<input
+							type="text"
+							id="type"
+							className="form-control"
+							value={type}
+							onChange={(e) => setType(e.target.value)}
+						/>
+					</div>
+
+					{/* <!-- Frame Shape input --> */}
+					<div className="form-outline mb-4">
+						<label className="form-label" htmlFor="frameShape">
+							price
+						</label>
+						<input
+							type="text"
+							id="price"
+							className="form-control"
+							value={price}
+							onChange={(e) => setPrice(e.target.value)}
+						/>
+					</div>
+
+					{/* <!-- Glass Color input --> */}
+					<div className="form-outline mb-4">
+						<label className="form-label" htmlFor="glassColor">
+							Glass Image
+						</label>
+						<input
+							type="text"
+							id="glassImage"
+							className="form-control"
+							value={glassImage}
+							onChange={(e) => setGlassImage(e.target.value)}
+						/>
+					</div>
+
+					
+					{/* <!-- Submit button and Cancel button--> */}
+
+					<div className="row mb-4">
+						<div className="col">
+							<div className="form-outline">
+								<button type="submit" className="btn btn-primary btn-block mb-4">
+									Submit
+								</button>
+							</div>
+						</div>
+						<div className="col">
+							<div className="form-outline">
+								<button type="submit" className="btn btn-danger btn-block mb-4">
+									Cancel
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
 	);
 };
 
-export default AddMovie;
+export default AddGlass;
