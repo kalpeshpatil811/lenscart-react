@@ -1,89 +1,91 @@
-import React from 'react';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
-import AppUser from '../../models/AppUser'; 
+import { React, useState } from "react";
+import axios from "axios";
 import CustomerService from "../../services/CustomerService";
+const initialData = { customerName: "", password: "" }
 
 const Login = () => {
 
-    const [AppUser, set] = useState(new Customer());
-    const dispatch = useDispatch();
-    const history = useHistory();
 
-    const handleAppUser = (event) => {
-        setAppUser({
-            ...appUser,
-            [event.target.name]: event.target.value
-        });
-    };
+    const [formData, setFormData] = useState(initialData);
 
-    const submitAppUser = (event) => {
-        console.log(appUser);
-        loginService(appUser)
-            .then((response) => {
-                dispatch(loginUser(response.data));
-                alert(`Login successful for ${response.data.userName}!`);
-                history.push("/Home");
-            })
-            .catch((error) => {
-                dispatch(logoutUser());
-                console.log(error.message);
-                // alert(`Something is wrong ${error.response}!`);
-            });
-        event.preventDefault();
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
+    // Handle login
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        // Send login request to server
+        CustomerService.login(formData).then((res) => {
+            if(res.data.role=="customer"){
+                alert(" customer Login Successfully");
+                console.log(res.data.role);
+            }
+            else{
+                alert("Admin login successfully");
+                console.log(res.data.role);
+
+            }
+        }).catch((error) => {
+            alert("Invalid username or password");
+
+        });
+
+
+    };
+
     return (
-        <div className="container" >
-            <p className="display-4 text-primary py-3">Login</p>
-            <hr />
-            <div className="col-3 mt-3 py-3 shadow bg-white" >
-                <h1 className="lead text-primary pb-2">Login</h1>
-                <form className="form form-group form-dark " onSubmit={submitAppUser}>
-                    <div>
-                        <input
-                            type="text"
-                            name="userName"
-                            id="userName"
-                            className="form-control mb-3"
-                            placeholder="Enter username"
-                            value={appUser.userName}
-                            onChange={handleAppUser}
-                            required
-                        />
-                        <input
-                            type="password"
-                            name="password"
-                            id="password"
-                            className="form-control mb-3"
-                            placeholder="Enter password"
-                            value={appUser.password}
-                            onChange={handleAppUser}
-                            required
-                        />
-                        <div className="form-group">
-                            <select className="form-control mb-3" name="role" id="role" onChange={handleAppUser}>
-                                <option value="Role">Select a role</option>
-                                <option value="ADMIN">ADMIN</option>
-                                <option value="EMPLOYEE">EMPLOYEE</option>
-                                <option value="MANAGER">MANAGER</option>
-                            </select>
+        <div className="container">
+            <div className="row">
+                <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                    <div className="card border-0 shadow rounded-3 my-5">
+                        <div className="card-body p-4 p-sm-5">
+                            <h5 className="card-title text-center mb-5 fw-light fs-5">Login</h5>
+                            <form>
+                                <div className="form-floating mb-3">
+                                    <input
+                                        type="text"
+                                        value={formData.customerName}
+                                        className="form-control"
+                                        id="customerName"
+                                        placeholder="jhonDoe69"
+                                        name="customerName"
+                                        onChange={handleChange}
+                                        required={true}
+                                    />
+                                    <label htmlFor="floatingInput">User Name</label>
+                                </div>
+                                <div className="form-floating mb-3">
+                                    <input
+                                        type="password"
+                                        value={formData.password}
+                                        className="form-control"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Password"
+                                        onChange={handleChange}
+                                        required={true}
+                                    />
+                                    <label htmlFor="floatingPassword">Password</label>
+                                </div>
+
+                                <div className="d-grid">
+                                    <button
+                                        className="btn btn-primary btn-login text-uppercase fw-bold"
+                                        type="submit"
+                                        onClick={handleLogin}
+                                    >
+                                        Login
+                                    </button>
+                                </div>
+                                <hr className="my-4" />
+                            </form>
                         </div>
-                        <input
-                            type="submit"
-                            id="submit"
-                            name="submit"
-                            className="form-control btn btn-outline-primary"
-                            value="Login"
-                        />
                     </div>
-                </form>
+                </div>
             </div>
-            <div className="py-3 ">
-                <Link to="/register" className="btn btn-outline-primary col-3">Not yet registered? Register</Link>
-            </div>
-        </div >
-    )
+        </div>
+    );
 }
 export default Login;
