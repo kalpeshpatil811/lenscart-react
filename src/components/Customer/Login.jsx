@@ -2,12 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import Customer from '../../models/Customer'; 
+import AppUser from '../../models/AppUser'; 
 import CustomerService from "../../services/CustomerService";
 
 const Login = () => {
 
-    const [Customer, setCustomer] = useState(new Customer());
+    const [AppUser, set] = useState(new Customer());
     const dispatch = useDispatch();
     const history = useHistory();
 
