@@ -18,10 +18,10 @@ const AddSunGlass = () => {
 						</div>
 						<div className="col">
 							<div className="form-outline">
-								<input type="text" id="form6Example2" className="form-control" />
 								<label className="form-label" for="form6Example2">
 									Brand name
 								</label>
+								<input type="text" id="form6Example2" className="form-control" />
 							</div>
 						</div>
 					</div>

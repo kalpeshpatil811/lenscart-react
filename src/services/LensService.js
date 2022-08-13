@@ -3,7 +3,7 @@ import axios from "axios";
 const Lens_API_BASE_URL = "http://localhost:9091/lenscart/lenses";
 
 class LensService {
-	getAllLens() {
+	getAllLenses() {
 		return axios.get(Lens_API_BASE_URL);
 	}
 
