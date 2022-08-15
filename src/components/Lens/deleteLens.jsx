@@ -13,6 +13,7 @@ const DeleteLens = () => {
 	const [color, setColor] = useState("");
 	const [shape, setShape] = useState("");
 	const [lenseImage, setlenseImage] = useState("");
+	const [quantity, setQuantity] = useState("");
     const { lensId } = useParams();
 
 	const navigate = useNavigate();
@@ -25,6 +26,7 @@ const DeleteLens = () => {
 			setColor(lens.color);
 			setShape(lens.shape);
 			setlenseImage(lens.lenseImage);
+			setQuantity(lens.quantity);
             console.log(lens)
             console.log(lensId)
 		});
@@ -37,11 +39,6 @@ const DeleteLens = () => {
 		e.preventDefault();
 		const responseBody = {
             lensId:lensId,
-			// brand: brand,
-			// price: price,
-			// color: color,
-			// shape: shape,
-			// lenseImage: lenseImage
 		};
 		console.log(responseBody);
 		LensService.deleteLens(responseBody.lensId).then((res) => {
@@ -125,6 +122,20 @@ const DeleteLens = () => {
 							onChange={(e) => setlenseImage(e.target.value)}
 						/>
 					</div>
+					{/* <!-- Quantity input --> */}
+					<div className="form-outline mb-4">
+						<label className="form-label" htmlFor="quantity">
+							Quantity
+						</label>
+						<input
+							type="number"
+							id="quantity"
+							className="form-control"
+							value={quantity}
+							onChange={(e) => setPrice(e.target.value)}
+						/>
+					</div>
+
 
 					{/* <!-- Delete button --> */}
 					<button type="submit" className="btn btn-primary btn-block mb-4">
