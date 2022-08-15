@@ -11,13 +11,13 @@ class CustomerService {
 		return axios.post(Customer_API_BASE_URL+"customer", customer);
 	}
 
-	// Logout() {
-	// 	return axios.get(Customer_API_BASE_URL + "/logout");
-	// }
+	logout() {
+	 	return axios.get(Customer_API_BASE_URL + "logout");
+	 }
 
-	// getByCustomerName(customerName) {
-	// 	return axios.get(Customer_API_BASE_URL + "/customer" + customerName);
-	// }
+	getByCustomerName(customerName) {
+	 	return axios.get(Customer_API_BASE_URL + "customer/" + customerName);
+	 }
 }
 
 export default new CustomerService();

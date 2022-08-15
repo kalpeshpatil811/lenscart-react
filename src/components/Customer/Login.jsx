@@ -1,9 +1,12 @@
 import { React, useState } from "react";
 import axios from "axios";
 import CustomerService from "../../services/CustomerService";
+import { useNavigate } from "react-router-dom";
+import { getCustomerInfo, setCustomerInfo } from "./CustomerInfo";
 const initialData = { customerName: "", password: "" }
 
 const Login = () => {
+    const navigate = useNavigate();
 
 
     const [formData, setFormData] = useState(initialData);
@@ -18,13 +21,18 @@ const Login = () => {
 
         // Send login request to server
         CustomerService.login(formData).then((res) => {
+
+            setCustomerInfo({...res.data,customerId:res.data.customerId});
+
+
+
+
             if(res.data.role=="customer"){
                 alert(" customer Login Successfully");
-                console.log(res.data.role);
+                navigate("/logout");
             }
             else{
                 alert("Admin login successfully");
-                console.log(res.data.role);
 
             }
         }).catch((error) => {
@@ -83,6 +91,12 @@ const Login = () => {
                             </form>
                         </div>
                     </div>
+                    <div className="" >
+            <p className="text-center">
+              Don't have an account? <a href="/addcustomer">Register</a>
+            </p>
+          </div>
+    
                 </div>
             </div>
         </div>

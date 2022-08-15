@@ -3,6 +3,7 @@ import AddCustomer from "./components/Customer/AddCustomer";
 import Login from "./components/Customer/Login";
 import ShowAllSunGlasses from "./components/SunGlass/ShowAllSunGlasses";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Logout from "./components/Customer/Logout";
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
 
 					<Route path="/addcustomer" element={<AddCustomer />} />
 					<Route path="/login" element={<Login />} />
-
+                    <Route path="/logout" element={<Logout/>}/>
 				</Routes>
 			</Router>
 		</div>
