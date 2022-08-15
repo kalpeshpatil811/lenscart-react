@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import SunGlassService from "../../services/SunGlassService";
-import { useNavigate } from "react-router-dom";
-import { Form, Button, FloatingLabel, Card, Row, Col } from "react-bootstrap";
+import { Card, Form, FloatingLabel, Row, Col, Button } from "react-bootstrap";
 
-const AddSunGlass = () => {
-	// Create state variables for each input field
+const UpdateSunGlass = () => {
+	const { sunGlassId } = useParams();
 	const [sunGlassName, setSunGlassName] = useState("");
 	const [brand, setBrand] = useState("");
 	const [price, setPrice] = useState("");
@@ -15,9 +15,32 @@ const AddSunGlass = () => {
 	const [image, setImage] = useState("");
 	const navigate = useNavigate();
 
+	useEffect(() => {
+		SunGlassService.getSunGlassById(sunGlassId)
+			.then((res) => {
+				let sunGlass = res.data;
+				setSunGlassName(sunGlass.sunGlassName);
+				setBrand(sunGlass.brand);
+				setPrice(sunGlass.price);
+				setFrameColor(sunGlass.frameColor);
+				setFrameShape(sunGlass.frameShape);
+				setGlassColor(sunGlass.glassColor);
+				setWeight(sunGlass.weight);
+				setImage(sunGlass.image);
+			})
+			.catch((err) => {
+				console.log("No sun glass found with id: " + sunGlassId);
+			});
+	}, [sunGlassId]);
+
+	const handleClose = () => {
+		navigate("/showallsunglassesadmin");
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const newSunGlass = {
+		const updatedSunGlass = {
+			sunGlassId: sunGlassId,
 			sunGlassName: sunGlassName,
 			brand: brand,
 			price: price,
@@ -27,25 +50,25 @@ const AddSunGlass = () => {
 			weight: weight,
 			image: image,
 		};
-		console.log(newSunGlass);
-		SunGlassService.createSunGlass(newSunGlass)
+		SunGlassService.updateSunGlass(updatedSunGlass)
 			.then((res) => {
-				alert("Sunglass added successfully");
-				handleCancel();
+				alert("Sun Glass Updated Successfully");
+				console.log(res.data);
+				handleClose();
 			})
 			.catch((err) => {
-				alert("Error adding Sunglass");
+				alert("Sun Glass Update Failed");
+				console.log(err);
 			});
-	};
-
-	const handleCancel = () => {
-		navigate("/showallsunglassesadmin");
 	};
 
 	return (
 		<div style={{ display: "flex", justifyContent: "center" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
 				<Form onSubmit={(e) => handleSubmit(e)}>
+					<FloatingLabel controlId="sunGlassId" label="SunGlass ID" className="mb-3">
+						<Form.Control type="text" placeholder="Enter SunGlass ID" disabled value={sunGlassId} />
+					</FloatingLabel>
 					<FloatingLabel controlId="sunGlassName" label="SunGlass Name" className="mb-3">
 						<Form.Control
 							type="text"
@@ -121,12 +144,12 @@ const AddSunGlass = () => {
 					<Row>
 						<Col>
 							<Button variant="primary" type="submit">
-								Submit
+								Update
 							</Button>
 						</Col>
 						<Col>
-							<Button variant="danger" onClick={handleCancel}>
-								Cancel
+							<Button variant="danger" onClick={handleClose}>
+								Close
 							</Button>
 						</Col>
 					</Row>
@@ -135,5 +158,4 @@ const AddSunGlass = () => {
 		</div>
 	);
 };
-
-export default AddSunGlass;
+export default UpdateSunGlass;

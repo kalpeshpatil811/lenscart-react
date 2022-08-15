@@ -11,6 +11,8 @@ import UpdateGlass from "./components/Glass/UpdateGlass";
 import ShowAllFrames from "./components/Frame/ShowAllFrames";
 import AddFrame from "./components/Frame/AddFrame";
 import UpdateFrames from "./components/Frame/UpdateFrames";
+import UpdateSunGlass from "./components/SunGlass/UpdateSunGlass";
+import ShowAllSunGlassesAdmin from "./components/SunGlass/ShowAllSunGlassesAdmin";
 
 function App() {
 	return (
@@ -26,6 +28,8 @@ function App() {
 					<Route path="/showallglasses" element={<ShowAllGlass />} />
 					<Route path="/addglass" element={<AddGlass />} />
 					<Route path="/updateglass/:glassId" element={<UpdateGlass /> } />
+					<Route path="/updatesunglass/:sunGlassId" element={<UpdateSunGlass />} />
+					<Route path="/showallsunglassesadmin" element={<ShowAllSunGlassesAdmin />} />
 				</Routes>
 			</Router>
 		</div>
