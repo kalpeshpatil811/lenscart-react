@@ -42,10 +42,6 @@ const AddSunGlass = () => {
 			});
 	};
 
-	const handleCancel = (e) => {
-		e.preventDefault();
-		navigate("/showallsunglasses");
-	};
 
 	return (
 		<div style={{ display: "flex", justifyContent: "center" }}>
@@ -129,11 +125,11 @@ const AddSunGlass = () => {
 								Submit
 							</Button>
 						</Col>
-						<Col>
+						{/* <Col>
 							<Button variant="danger" onClick={handleCancel}>
 								Cancel
 							</Button>
-						</Col>
+						</Col> */}
 					</Row>
 				</Form>
 			</Card>
