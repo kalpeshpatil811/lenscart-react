@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ShowAllSunGlasses from "./components/SunGlass/ShowAllSunGlasses";
 import ShowAllGlass from "./components/Glass/ShowAllGlass";
 import AddGlass from "./components/Glass/AddGlass";
+import UpdateGlass from "./components/Glass/UpdateGlass";
 
 function App() {
 	return (
@@ -12,8 +13,9 @@ function App() {
 				<Routes>
 					<Route path="/addsunglass" element={<AddSunGlass />} />
 					<Route path="/showallsunglasses" element={<ShowAllSunGlasses />} />
-					<Route path="/showallglass" element={<ShowAllGlass />} />
+					<Route path="/showallglasses" element={<ShowAllGlass />} />
 					<Route path="/addglass" element={<AddGlass />} />
+					<Route path="/updateglass/:glassId" element={<UpdateGlass /> } />
 				</Routes>
 			</Router>
 		</div>
