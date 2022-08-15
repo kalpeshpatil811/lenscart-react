@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddLens from "./components/Lens/AddLens";
 import ShowAllSunGlasses from "./components/SunGlass/ShowAllSunGlasses";
 import NavbarComponent from "./components/Navbar/NavbarComponent";
+import UpdateSunGlass from "./components/SunGlass/UpdateSunGlass";
+import ShowAllSunGlassesAdmin from "./components/SunGlass/ShowAllSunGlassesAdmin";
 import ShowAllGlass from "./components/Glass/ShowAllGlass";
 import AddGlass from "./components/Glass/AddGlass";
 import UpdateGlass from "./components/Glass/UpdateGlass";
@@ -22,6 +24,8 @@ function App() {
 				<Routes>
 					<Route path="/addsunglass" element={<AddSunGlass />} />
 					<Route path="/showallsunglasses" element={<ShowAllSunGlasses />} />
+					<Route path="/updatesunglass/:sunGlassId" element={<UpdateSunGlass />} />
+					<Route path="/showallsunglassesadmin" element={<ShowAllSunGlassesAdmin />} />
 					<Route path="/showallglasses" element={<ShowAllGlass />} />
 					<Route path="/addglass" element={<AddGlass />} />
 					<Route path="/updateglass/:glassId" element={<UpdateGlass /> } />
