@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SunGlassService from "../../services/SunGlassService";
+import SunGlass from "./SunGlass";
+import { Container, CardGroup } from "react-bootstrap";
 
 const ShowAllSunGlasses = () => {
 	const [sunGlasses, setSunGlasses] = useState([]);
@@ -11,22 +13,15 @@ const ShowAllSunGlasses = () => {
 	}, []);
 
 	return (
-		<div className="container">
-			{sunGlasses.map((sunGlass) => (
-				<div key={sunGlass.id} className="card">
-					<div className="card-body">
-						<img src={sunGlass.image} alt={sunGlass.sunGlassName} />
-						<h4>{sunGlass.sunGlassName}</h4>
-						<h4>{sunGlass.brand}</h4>
-						<h4>{sunGlass.price}</h4>
-						<h4>{sunGlass.frameColor}</h4>
-						<h4>{sunGlass.frameShape}</h4>
-						<h4>{sunGlass.glassColor}</h4>
-						<h4>{sunGlass.weight}</h4>
-					</div>
-				</div>
-			))}
-		</div>
+		<>
+			<Container className="p-4">
+				<CardGroup>
+					{sunGlasses.map((sunGlass) => (
+						<SunGlass key={sunGlass.id} sunGlass={sunGlass} />
+					))}
+				</CardGroup>
+			</Container>
+		</>
 	);
 };
 

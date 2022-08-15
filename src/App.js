@@ -1,7 +1,9 @@
+import React from "react";
 import "./App.css";
 import AddCustomer from "./components/Customer/AddCustomer";
 import Login from "./components/Customer/Login";
 import ShowAllSunGlasses from "./components/SunGlass/ShowAllSunGlasses";
+import NavbarComponent from "./components/Navbar/NavbarComponent";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Logout from "./components/Customer/Logout";
 
