@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SunGlassService from "../../services/SunGlassService";
 import { useNavigate } from "react-router-dom";
+import { Form, Button, FloatingLabel, Card, Row, Col } from "react-bootstrap";
 
 const AddSunGlass = () => {
 	// Create state variables for each input field
@@ -31,154 +32,111 @@ const AddSunGlass = () => {
 			.then((res) => {
 				console.log(res);
 				console.log("Sunglass added successfully");
+				alert("Sunglass added successfully");
+				navigate("/showallsunglasses");
 			})
 			.catch((err) => {
 				console.log(err);
 				console.log("Error adding Sunglass");
-			})
-			.finally(() => {
-				navigate("/");
+				alert("Error adding Sunglass");
 			});
 	};
 
+	const handleCancel = (e) => {
+		e.preventDefault();
+		navigate("/showallsunglasses");
+	};
+
 	return (
-		<div align="center">
-			<div className="card" style={{ width: "50rem" }}>
-				<form className="card-body" onSubmit={(e) => handleSubmit(e)}>
-					<h5 className="card-title">Add Sunglass</h5>
-					<hr />
-					{/* <!-- SunGlass Name input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="sunGlassName">
-							SunGlass Name
-						</label>
-						<input
+		<div style={{ display: "flex", justifyContent: "center" }}>
+			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
+				<Form onSubmit={() => handleSubmit}>
+					<FloatingLabel controlId="sunGlassName" label="SunGlass Name" className="mb-3">
+						<Form.Control
 							type="text"
-							id="sunGlassName"
-							className="form-control"
+							placeholder="Enter SunGlass Name"
+							required
 							value={sunGlassName}
 							onChange={(e) => setSunGlassName(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- Brand input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="brand">
-							Brand
-						</label>
-						<input
+					</FloatingLabel>
+					<FloatingLabel controlId="brand" label="Brand" className="mb-3">
+						<Form.Control
 							type="text"
-							id="brand"
-							className="form-control"
+							placeholder="Enter Brand"
+							required
 							value={brand}
 							onChange={(e) => setBrand(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- Price input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="price">
-							Price
-						</label>
-						<input
+					</FloatingLabel>
+					<FloatingLabel controlId="price" label="Price" className="mb-3">
+						<Form.Control
 							type="number"
-							id="price"
-							className="form-control"
+							placeholder="Enter Price"
+							required
 							value={price}
 							onChange={(e) => setPrice(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- Frame Color input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="frameColor">
-							Frame Color
-						</label>
-						<input
+					</FloatingLabel>
+					<FloatingLabel controlId="frameColor" label="Frame Color" className="mb-3">
+						<Form.Control
 							type="text"
-							id="frameColor"
-							className="form-control"
+							placeholder="Enter Frame Color"
+							required
 							value={frameColor}
 							onChange={(e) => setFrameColor(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- Frame Shape input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="frameShape">
-							Frame Shape
-						</label>
-						<input
+					</FloatingLabel>
+					<FloatingLabel controlId="frameShape" label="Frame Shape" className="mb-3">
+						<Form.Control
 							type="text"
-							id="frameShape"
-							className="form-control"
+							placeholder="Enter Frame Shape"
+							required
 							value={frameShape}
 							onChange={(e) => setFrameShape(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- Glass Color input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="glassColor">
-							Glass Color
-						</label>
-						<input
+					</FloatingLabel>
+					<FloatingLabel controlId="glassColor" label="Glass Color" className="mb-3">
+						<Form.Control
 							type="text"
-							id="glassColor"
-							className="form-control"
+							placeholder="Enter Glass Color"
+							required
 							value={glassColor}
 							onChange={(e) => setGlassColor(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- Weight input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="weight">
-							Weight
-						</label>
-						<input
+					</FloatingLabel>
+					<FloatingLabel controlId="weight" label="Weight" className="mb-3">
+						<Form.Control
 							type="number"
-							id="weight"
-							className="form-control"
+							placeholder="Enter Weight"
+							required
 							value={weight}
 							onChange={(e) => setWeight(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- Image URL input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="image">
-							Image URL
-						</label>
-						<input
+					</FloatingLabel>
+					<FloatingLabel controlId="image" label="Image URL" className="mb-3">
+						<Form.Control
 							type="text"
-							id="image"
-							className="form-control"
+							placeholder="Enter Image URL"
+							required
 							value={image}
 							onChange={(e) => setImage(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- Submit button and Cancel button--> */}
-
-					<div className="row mb-4">
-						<div className="col">
-							<div className="form-outline">
-								<button type="submit" className="btn btn-primary btn-block mb-4">
-									Submit
-								</button>
-							</div>
-						</div>
-						<div className="col">
-							<div className="form-outline">
-								<button type="submit" className="btn btn-danger btn-block mb-4">
-									Cancel
-								</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
+					</FloatingLabel>
+					<Row>
+						<Col>
+							<Button variant="primary" type="submit">
+								Submit
+							</Button>
+						</Col>
+						<Col>
+							<Button variant="danger" onClick={handleCancel}>
+								Cancel
+							</Button>
+						</Col>
+					</Row>
+				</Form>
+			</Card>
 		</div>
 	);
 };
