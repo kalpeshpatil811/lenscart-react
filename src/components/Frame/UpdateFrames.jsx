@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import FrameService from "../../services/FrameService";
-import { useNavigate } from "react-router-dom";
 
-const AddFrame = () => {
-	// Create state variables for each input field
-	const [frameName, setFrameName] = useState("");
+
+const UpdateFrames = () => {
+    
+    const [frameName, setFrameName] = useState("");
 	const [brand, setBrand] = useState("");
     const [color, setColor] = useState("");
 	const [price, setPrice] = useState("");
@@ -12,12 +13,33 @@ const AddFrame = () => {
 	const [shapeOptions, setShapeOptions] = useState("");
 	const [size, setSize] = useState("");
 	const [frameImage, setFrameImage] = useState("");
+    const { frameId } = useParams();
+
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		FrameService.getFrameById(frameId).then((res) => {
+			let frame = res.data;
+            setFrameName(frame.frameName);
+			setBrand(frame.brand);
+            setColor(frame.color);
+			setPrice(frame.price);
+            setDescription(frame.description);
+			setShapeOptions(frame.shapeOptions);
+            setSize(frame.size);
+			setFrameImage(frame.frameImage);
+            console.log(frame)
+            console.log(frameId)
+		});
+	}, [frameId]);
+	const handleClose = () => {
+		navigate("/showallframes");
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const newFrame = {
-			frameName: frameName,
+		const responseBody = {
+            frameName: frameName,
 			brand: brand,
             color: color,
 			price: price,
@@ -26,31 +48,21 @@ const AddFrame = () => {
 			size: size,
 			frameImage: frameImage,
 		};
-		console.log(newFrame);
-		FrameService.addFrame(newFrame)
-			.then((res) => {
-				console.log(res);
-				console.log("Frame added successfully");
-			})
-			.catch((err) => {
-				console.log(err);
-				console.log("Error adding Frame");
-			})
-			.finally(() => {
-				navigate("/");
-			});
+		console.log(responseBody);
+		FrameService.UpdateFrames(responseBody).then((res) => {
+            alert("Succesfully Updated!");
+			handleClose();
+		});
 	};
 
-
-	return (
+    return (
 		<div align="center">
 			<div className="card" style={{ width: "50rem" }}>
 				<form className="card-body" onSubmit={(e) => handleSubmit(e)}>
-					<h5 className="card-title">Add New Frame</h5>
+					<h5 className="card-title">Update Frame Details</h5>
 					<hr />
-
-					{/* <!-- Frame Name input --> */}
-					<div className="form-outline mb-4">
+                   
+                    <div className="form-outline mb-4">
 						<label className="form-label" htmlFor="frameName">
 							Frame Name
 						</label>
@@ -58,7 +70,6 @@ const AddFrame = () => {
 							type="text"
 							id="frameName"
 							className="form-control"
-							placeholder="Lenscart air"
 							value={frameName}
 							onChange={(e) => setFrameName(e.target.value)}
 						/>
@@ -67,91 +78,82 @@ const AddFrame = () => {
 					{/* <!-- Brand input --> */}
 					<div className="form-outline mb-4">
 						<label className="form-label" htmlFor="brand">
-							Frame Brand
+							Brand
 						</label>
 						<input
 							type="text"
 							id="brand"
 							className="form-control"
-							placeholder="Lenscart"
 							value={brand}
 							onChange={(e) => setBrand(e.target.value)}
 						/>
 					</div>
 
-
-                    {/* <!-- Frame Color input --> */}
+                    {/* <!-- Color input --> */}
 					<div className="form-outline mb-4">
 						<label className="form-label" htmlFor="color">
-							Frame Color
+							Color
 						</label>
 						<input
 							type="text"
 							id="color"
 							className="form-control"
-							placeholder="Black"
 							value={color}
 							onChange={(e) => setColor(e.target.value)}
 						/>
 					</div>
 
-
 					{/* <!-- Price input --> */}
 					<div className="form-outline mb-4">
 						<label className="form-label" htmlFor="price">
-							Frame Price
+							Price
 						</label>
 						<input
 							type="number"
 							id="price"
 							className="form-control"
-							placeholder="$99.99"
 							value={price}
 							onChange={(e) => setPrice(e.target.value)}
 						/>
 					</div>
 
-
-					{/* <!-- Frame Description input --> */}
+					{/* <!-- Description input --> */}
 					<div className="form-outline mb-4">
 						<label className="form-label" htmlFor="description">
-							Frame Description
+							Description
 						</label>
 						<input
 							type="text"
 							id="description"
 							className="form-control"
-							placeholder="eg. flexible frame"
 							value={description}
 							onChange={(e) => setDescription(e.target.value)}
 						/>
 					</div>
 
-					{/* <!-- Glass shapeOptions input --> */}
+					{/* <!-- Shape options input --> */}
 					<div className="form-outline mb-4">
 						<label className="form-label" htmlFor="shapeOptions">
-                            Frame Shape
+							Shape
 						</label>
 						<input
 							type="text"
 							id="shapeOptions"
 							className="form-control"
-							placeholder="eg. oval"
 							value={shapeOptions}
 							onChange={(e) => setShapeOptions(e.target.value)}
 						/>
 					</div>
 
-					{/* <!-- Size input --> */}
+                    	{/* <!-- Size options input --> */}
 					<div className="form-outline mb-4">
 						<label className="form-label" htmlFor="size">
-							Frame Size
+                        Size
 						</label>
 						<input
 							type="text"
 							id="size"
 							className="form-control"
-							placeholder="Select"
 							value={size}
 							onChange={(e) => setSize(e.target.value)}
 						/>
@@ -166,34 +168,19 @@ const AddFrame = () => {
 							type="text"
 							id="frameImage"
 							className="form-control"
-							placeholder="Image URL"
 							value={frameImage}
 							onChange={(e) => setFrameImage(e.target.value)}
 						/>
 					</div>
 
-					{/* <!-- Submit button and Cancel button--> */}
-
-					<div className="row mb-4">
-						<div className="col">
-							<div className="form-outline">
-								<button type="submit" className="btn btn-primary btn-block mb-4">
-									Submit
-								</button>
-							</div>
-						</div>
-						<div className="col">
-							<div className="form-outline">
-								<button type="submit" className="btn btn-danger btn-block mb-4">
-									Cancel
-								</button>
-							</div>
-						</div>
-					</div>
+					{/* <!-- Submit button --> */}
+					<button type="submit" className="btn btn-primary btn-block mb-4">
+						Submit
+					</button>
 				</form>
 			</div>
 		</div>
 	);
 };
 
-export default AddFrame;
+export default UpdateFrames;

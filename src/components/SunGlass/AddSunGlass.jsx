@@ -43,7 +43,7 @@ const AddSunGlass = () => {
 
 	return (
 		<div align="center">
-			<div className="card" style={{ width: "50rem" }}>
+			<div className="container" style={{ width: "50rem" }}>
 				<form className="card-body" onSubmit={(e) => handleSubmit(e)}>
 					<h5 className="card-title">Add Sunglass</h5>
 					<hr />
