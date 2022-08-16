@@ -14,12 +14,10 @@ const ShowAllGlass = () => {
 
 	return (
 		<>
-			<Container className="p-4">
-				<CardGroup>
-					{glass.map((glass) => (
-						<Glass key={glass.glassId} glass={glass} />
-					))}
-				</CardGroup>
+			<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
+				{glass.map((glass) => (
+					<Glass key={glass.glassId} glass={glass} />
+				))}
 			</Container>
 		</>
 	);
