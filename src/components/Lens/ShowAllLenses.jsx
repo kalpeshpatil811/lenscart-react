@@ -14,10 +14,10 @@ const ShowAllLenses = () => {
 
 	return (
 		<>
-			<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>				
+			<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
 				<CardGroup>
 					{lenses.map((lens) => (
-						<Lens key={lens.id} lens={lens} />
+						<Lens key={lens.lensId} lens={lens} />
 					))}
 				</CardGroup>
 			</Container>

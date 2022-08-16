@@ -21,7 +21,7 @@ const AddLens = () => {
 			color: color,
 			shape: shape,
 			lenseImage: lenseImage,
-			quantity: quantity 
+			quantity: quantity,
 		};
 		console.log(newLens);
 		LensService.createLens(newLens)
@@ -29,7 +29,7 @@ const AddLens = () => {
 				console.log(res);
 				console.log("Lens added successfully");
 				alert("Lens added successfully");
-				navigate("/showalllenses");
+				navigate("/showalllensesadmin");
 			})
 			.catch((err) => {
 				console.log(err);
@@ -40,14 +40,14 @@ const AddLens = () => {
 
 	const handleCancel = (e) => {
 		e.preventDefault();
-		navigate("/showalllenses");
+		navigate("/showalllensesadmin");
 	};
 
 	return (
 		<div style={{ display: "flex", justifyContent: "center" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
-			<h5 className="card-title text-center">Add Contact Lens</h5>
-				<Form onSubmit={(e) => handleSubmit(e)}>			
+				<h5 className="card-title text-center">Add Contact Lens</h5>
+				<Form onSubmit={(e) => handleSubmit(e)}>
 					<FloatingLabel controlId="brand" label="Brand" className="mb-3">
 						<Form.Control
 							type="text"

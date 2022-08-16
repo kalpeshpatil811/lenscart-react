@@ -17,10 +17,10 @@ import UpdateFrames from "./components/Frame/UpdateFrames";
 import UpdateSunGlass from "./components/SunGlass/UpdateSunGlass";
 import ShowAllSunGlassesAdmin from "./components/SunGlass/ShowAllSunGlassesAdmin";
 import ShowAllFramesAdmin from "./components/Frame/ShowAllFramesAdmin";
-
 import ShowAllLenses from "./components/Lens/ShowAllLenses";
-import DeleteLens from "./components/Lens/deleteLens";
 import ShowAllLensesAdmin from "./components/Lens/ShowAllLensesAdmin";
+import UpdateLens from "./components/Lens/UpdateLens";
+
 function App() {
 	return (
 		<div className="App">
@@ -42,6 +42,10 @@ function App() {
 					<Route path="/showallsunglasses" element={<ShowAllSunGlasses />} />
 					<Route path="/showallsunglassesadmin" element={<ShowAllSunGlassesAdmin />} />
 					<Route path="/showallframesadmin" element={<ShowAllFramesAdmin />} />
+					<Route path="/showalllenses" element={<ShowAllLenses />} />
+					<Route path="/showalllensesadmin" element={<ShowAllLensesAdmin />} />
+					<Route path="/addlens" element={<AddLens />} />
+					<Route path="/updatelens/:lensId" element={<UpdateLens />} />
 				</Routes>
 			</Router>
 		</div>
