@@ -2,9 +2,21 @@ import Container from "react-bootstrap/Container";
 import { Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 import { Cart, PersonFill } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
+import { removeCustomerInfo } from "../Customer/CustomerInfo";
 
 function NavbarComponent() {
 	const navigate = useNavigate();
+
+
+	const handleLogout = () => {
+
+		removeCustomerInfo();
+		navigate("/login");
+
+	};
+
+
+
 	return (
 		<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
 			<Container>
@@ -28,7 +40,8 @@ function NavbarComponent() {
 							<NavDropdown.Item disabled>Welcome User,</NavDropdown.Item>
 							<NavDropdown.Item onClick={() => navigate("/profile")}>Profile</NavDropdown.Item>
 							<NavDropdown.Divider />
-							<NavDropdown.Item onClick={() => navigate("/logout")}>Logout</NavDropdown.Item>
+							<NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+
 						</NavDropdown>
 					</Nav>
 				</Navbar.Collapse>
