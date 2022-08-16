@@ -10,7 +10,7 @@ const ShowAllSunGlassesAdmin = () => {
 		SunGlassService.getAllSunGlasses().then((res) => {
 			setSunGlasses(res.data);
 		});
-	}, [sunGlasses]);
+	}, []);
 
 	return (
 		<>
