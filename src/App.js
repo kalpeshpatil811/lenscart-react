@@ -5,7 +5,8 @@ import Login from "./components/Customer/Login";
 import ShowAllSunGlasses from "./components/SunGlass/ShowAllSunGlasses";
 import NavbarComponent from "./components/Navbar/NavbarComponent";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Logout from "./components/Customer/Logout";
+import GetCustomerById from "./components/Customer/GetCustomerById";
+import UpdateCustomer from "./components/Customer/UpdateCustomer";
 
 
 function App() {
@@ -13,11 +14,14 @@ function App() {
 		<div className="App">
 			<h1 align="center">LensCart React App</h1>
 			<Router>
+			<NavbarComponent />
+
 				<Routes>
 
 					<Route path="/addcustomer" element={<AddCustomer />} />
 					<Route path="/login" element={<Login />} />
-                    <Route path="/logout" element={<Logout/>}/>
+					<Route path="/profile" element={<GetCustomerById/>}/>
+					<Route path="/updateCustomer/:customerId" element={<UpdateCustomer/>}/>
 				</Routes>
 			</Router>
 		</div>
