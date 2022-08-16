@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Form, Button, FloatingLabel, Card, Row, Col } from "react-bootstrap";
 import GlassService from "../../services/GlassService";
 
 
@@ -50,102 +51,85 @@ const UpdateGlass = () => {
 			handleClose();
 		});
 	};
+	const handleCancel = (e) => {
+		e.preventDefault();
+		navigate("/showallglasses");
+	};
 
-    return (
-		<div align="center">
-			<div className="card" style={{ width: "50rem" }}>
-				<form className="card-body" onSubmit={(e) => handleSubmit(e)}>
-					<h5 className="card-title">Update Glass</h5>
-					<hr />
-					
-
-                    <div className="form-outline mb-4">
-						<label className="form-label" htmlFor="glassName">
-							Glass Name
-						</label>
-						<input
+	return (
+		<div style={{ display: "flex", justifyContent: "center" }}>
+			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
+			<h5 className="card-title text-center">Update Glass</h5>
+				<Form onSubmit={(e) => handleSubmit(e)}>			
+				<FloatingLabel controlId="glassName" label="glass Name" className="mb-3">
+						<Form.Control
 							type="text"
-							id="glassName"
-							className="form-control"
+							placeholder="Enter Glass Name"
+							required
 							value={glassName}
 							onChange={(e) => setGlassName(e.target.value)}
 						/>
-					</div>
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="brand">
-							Brand
-						</label>
-						<input
+					</FloatingLabel>
+					<FloatingLabel controlId="brand" label="Brand" className="mb-3">
+						<Form.Control
 							type="text"
-							id="brand"
-							className="form-control"
+							placeholder="Enter Brand"
+							required
 							value={brand}
 							onChange={(e) => setBrand(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- Price input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="price">
-							Price
-						</label>
-						<input
+					</FloatingLabel>
+					<FloatingLabel controlId="price" label="Price" className="mb-3">
+						<Form.Control
 							type="number"
-							id="price"
-							className="form-control"
+							placeholder="Enter Price"
+							required
 							value={price}
 							onChange={(e) => setPrice(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- type input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="type">
-							type
-						</label>
-						<input
+					</FloatingLabel>
+					<FloatingLabel controlId="type" label="type" className="mb-3">
+						<Form.Control
 							type="text"
-							id="type"
-							className="form-control"
+							placeholder="Enter Glass Type"
+							required
 							value={type}
 							onChange={(e) => setType(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- PowerRange input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="powerRange">
-							Power Range
-						</label>
-						<input
+					</FloatingLabel>
+					<FloatingLabel controlId="powerRange" label="powerRange" className="mb-3">
+						<Form.Control
 							type="text"
-							id="powerRange"
-							className="form-control"
+							placeholder="Enter Power Range"
+							required
 							value={powerRange}
 							onChange={(e) => setPowerRange(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- Image URL input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="glassImage">
-							Image
-						</label>
-						<input
+					</FloatingLabel>
+					
+					<FloatingLabel controlId="glassImage" label="glassImage" className="mb-3">
+						<Form.Control
 							type="text"
-							id="glassImage"
-							className="form-control"
+							placeholder="Enter Image URL"
+							required
 							value={glassImage}
 							onChange={(e) => setGlassImage(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- Submit button --> */}
-					<button type="submit" className="btn btn-primary btn-block mb-4">
-						Submit
-					</button>
-				</form>
-			</div>
+					</FloatingLabel>
+					<Row>
+						<Col>
+							<Button variant="primary" type="submit">
+								Submit
+							</Button>
+						</Col>
+						<Col>
+							<Button variant="danger" onClick={handleCancel}>
+								Cancel
+							</Button>
+						</Col>
+					</Row>
+				</Form>
+			</Card>
 		</div>
 	);
 };
