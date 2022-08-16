@@ -30,19 +30,18 @@ const AddFrame = () => {
 		console.log(newFrame);
 		FrameService.addFrame(newFrame)
 			.then((res) => {
-				console.log(res);
-				console.log("Frame added successfully");
 				alert("Frame added successfully");
-				navigate("/showallframes");
+				handleCancel();
 			})
 			.catch((err) => {
-				console.log(err);
-				console.log("Error adding Frame");
 				alert("Error adding frame");
 			})
 
 	};
 
+	const handleCancel = () => {
+		navigate("/showallframesadmin");
+	};
 
 	return (
 		<div style={{ display: "flex", justifyContent: "center" }}>
@@ -139,11 +138,11 @@ const AddFrame = () => {
 								Submit
 							</Button>
 						</Col>
-						{/* <Col>
+						<Col>
 							<Button variant="danger" onClick={handleCancel}>
 								Cancel
 							</Button>
-						</Col> */}
+						</Col>
 					</Row>
 				</Form>
 			</Card>

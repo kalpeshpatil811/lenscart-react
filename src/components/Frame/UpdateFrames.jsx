@@ -1,186 +1,172 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import FrameService from "../../services/FrameService";
-
+import { Card, Form, FloatingLabel, Row, Col, Button } from "react-bootstrap";
 
 const UpdateFrames = () => {
-    
-    const [frameName, setFrameName] = useState("");
+	const { frameId } = useParams();
+	const [frameName, setFrameName] = useState("");
 	const [brand, setBrand] = useState("");
-    const [color, setColor] = useState("");
+	const [color, setColor] = useState("");
 	const [price, setPrice] = useState("");
 	const [description, setDescription] = useState("");
 	const [shapeOptions, setShapeOptions] = useState("");
 	const [size, setSize] = useState("");
 	const [frameImage, setFrameImage] = useState("");
-    const { frameId } = useParams();
 
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		FrameService.getFrameById(frameId).then((res) => {
 			let frame = res.data;
-            setFrameName(frame.frameName);
+			setFrameName(frame.frameName);
 			setBrand(frame.brand);
-            setColor(frame.color);
+			setColor(frame.color);
 			setPrice(frame.price);
-            setDescription(frame.description);
+			setDescription(frame.description);
 			setShapeOptions(frame.shapeOptions);
-            setSize(frame.size);
+			setSize(frame.size);
 			setFrameImage(frame.frameImage);
-            console.log(frame)
-            console.log(frameId)
-		});
+		})
+			.catch((err) => {
+				console.log("No frame found with id: " + frameId);
+			});
 	}, [frameId]);
+
 	const handleClose = () => {
-		navigate("/showallframes");
+		navigate("/showallframesadmin");
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const responseBody = {
-            frameName: frameName,
+			frameId: frameId,
+			frameName: frameName,
 			brand: brand,
-            color: color,
+			color: color,
 			price: price,
 			description: description,
 			shapeOptions: shapeOptions,
 			size: size,
 			frameImage: frameImage,
 		};
-		console.log(responseBody);
-		FrameService.UpdateFrames(responseBody).then((res) => {
-            alert("Succesfully Updated!");
+
+		FrameService.updateFrame(responseBody).then((res) => {
+			alert("Frame Succesfully Updated!");
+			console.log(res.data);
 			handleClose();
-		});
+		})
+			.catch((err) => {
+				alert("Frame Update Failed");
+				console.log(err);
+			});
 	};
 
-    return (
-		<div align="center">
-			<div className="card" style={{ width: "50rem" }}>
-				<form className="card-body" onSubmit={(e) => handleSubmit(e)}>
-					<h5 className="card-title">Update Frame Details</h5>
-					<hr />
-                   
-                    <div className="form-outline mb-4">
-						<label className="form-label" htmlFor="frameName">
-							Frame Name
-						</label>
-						<input
+	return (
+		<div style={{ display: "flex", justifyContent: "center" }}>
+			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
+				<Form onSubmit={(e) => handleSubmit(e)}>
+
+					<FloatingLabel controlId="frameId" label="Frame ID" className="mb-3">
+						<Form.Control type="text" placeholder="Enter Frame ID" disabled value={frameId} />
+					</FloatingLabel>
+
+					<FloatingLabel controlId="frameName" label="Frame Name" className="mb-3">
+						<Form.Control
 							type="text"
-							id="frameName"
-							className="form-control"
+							placeholder="Enter Frame Name"
+							required
 							value={frameName}
 							onChange={(e) => setFrameName(e.target.value)}
 						/>
-					</div>
+					</FloatingLabel>
 
-					{/* <!-- Brand input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="brand">
-							Brand
-						</label>
-						<input
+					<FloatingLabel controlId="brand" label="Brand Name" className="mb-3">
+						<Form.Control
 							type="text"
-							id="brand"
-							className="form-control"
+							placeholder="Enter Brand"
+							required
 							value={brand}
 							onChange={(e) => setBrand(e.target.value)}
 						/>
-					</div>
+					</FloatingLabel>
 
-                    {/* <!-- Color input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="color">
-							Color
-						</label>
-						<input
+					<FloatingLabel controlId="color" label="Color Of Frame" className="mb-3">
+						<Form.Control
 							type="text"
-							id="color"
-							className="form-control"
+							placeholder="Enter Color"
+							required
 							value={color}
 							onChange={(e) => setColor(e.target.value)}
 						/>
-					</div>
+					</FloatingLabel>
 
-					{/* <!-- Price input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="price">
-							Price
-						</label>
-						<input
+
+					<FloatingLabel controlId="price" label="Brand Price" className="mb-3">
+						<Form.Control
 							type="number"
-							id="price"
-							className="form-control"
+							placeholder="Enter Price"
+							required
 							value={price}
 							onChange={(e) => setPrice(e.target.value)}
 						/>
-					</div>
+					</FloatingLabel>
 
-					{/* <!-- Description input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="description">
-							Description
-						</label>
-						<input
+					<FloatingLabel controlId="description" label="Description" className="mb-3">
+						<Form.Control
 							type="text"
-							id="description"
-							className="form-control"
+							placeholder="Enter Description"
+							required
 							value={description}
 							onChange={(e) => setDescription(e.target.value)}
 						/>
-					</div>
+					</FloatingLabel>
 
-					{/* <!-- Shape options input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="shapeOptions">
-							Shape
-						</label>
-						<input
+					<FloatingLabel controlId="shapeOptions" label="Shape Options of frame" className="mb-3">
+						<Form.Control
 							type="text"
-							id="shapeOptions"
-							className="form-control"
+							placeholder="Enter shape"
+							required
 							value={shapeOptions}
 							onChange={(e) => setShapeOptions(e.target.value)}
 						/>
-					</div>
+					</FloatingLabel>
 
-                    	{/* <!-- Size options input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="size">
-                        Size
-						</label>
-						<input
-							type="text"
-							id="size"
-							className="form-control"
-							value={size}
-							onChange={(e) => setSize(e.target.value)}
-						/>
-					</div>
+					<FloatingLabel controlId="size" label="Frame size" className="mb-3">
+						<Form.Select type="text" aria-label="Floating label select example" value={size}
+							onChange={(e) => setSize(e.target.value)} required>
+							<option value="small">Small</option>
+							<option value="medium">Medium</option>
+							<option value="large">Large</option>
+						</Form.Select>
+					</FloatingLabel>
 
-					{/* <!-- Image URL input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="frameImage">
-							Image URL
-						</label>
-						<input
+					<FloatingLabel controlId="frameImage" label="Frame Image URL" className="mb-3">
+						<Form.Control
 							type="text"
-							id="frameImage"
-							className="form-control"
+							placeholder="Enter Image URL"
+							required
 							value={frameImage}
 							onChange={(e) => setFrameImage(e.target.value)}
 						/>
-					</div>
+					</FloatingLabel>
 
 					{/* <!-- Submit button --> */}
-					<button type="submit" className="btn btn-primary btn-block mb-4">
-						Submit
-					</button>
-				</form>
-			</div>
+					<Row>
+						<Col>
+							<Button variant="primary" type="submit">
+								Update
+							</Button>
+						</Col>
+						<Col>
+							<Button variant="danger" onClick={handleClose}>
+								Close
+							</Button>
+						</Col>
+					</Row>
+				</Form>
+			</Card>
 		</div>
 	);
 };
-
 export default UpdateFrames;
