@@ -33,7 +33,7 @@ const AddSunGlass = () => {
 				console.log(res);
 				console.log("Sunglass added successfully");
 				alert("Sunglass added successfully");
-				navigate("/showallsunglasses");
+				navigate("/showallsunglassesadmin");
 			})
 			.catch((err) => {
 				console.log(err);
@@ -44,7 +44,7 @@ const AddSunGlass = () => {
 
 	const handleCancel = (e) => {
 		e.preventDefault();
-		navigate("/showallsunglasses");
+		navigate("/showallsunglassesadmin");
 	};
 
 	return (

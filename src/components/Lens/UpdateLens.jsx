@@ -126,7 +126,4 @@ const UpdateLens = () => {
 	);
 };
 
-<<<<<<< HEAD
-export default UpdateLens;
-=======
 export default UpdateLens;

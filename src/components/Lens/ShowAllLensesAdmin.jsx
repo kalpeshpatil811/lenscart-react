@@ -34,6 +34,4 @@ const ShowAllLensesAdmin = () => {
 		</>
 	);
 };
-
-<<<<<<< HEAD
 export default ShowAllLensesAdmin;
