@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import { Card } from "react-bootstrap";
 
-function SunGlass({ sunGlass }) {
+function Glass({ glass }) {
 	return (
 		<Card
 			style={{
@@ -12,32 +12,24 @@ function SunGlass({ sunGlass }) {
 				padding: "10px",
 			}}
 		>
-			<Card.Img height={200} variant="top" src={sunGlass.image} alt={sunGlass.sunGlassName} />
+			<Card.Img height={200} variant="top" src={glass.glassImage} alt={glass.glassName} />
 			<Card.Body>
-				<Card.Title>{sunGlass.sunGlassName}</Card.Title>
+				<Card.Title>{glass.glassName}</Card.Title>
 				<Card.Text>
 					<b>Brand: </b>
-					{sunGlass.brand}
+					{glass.brand}
 				</Card.Text>
 				<Card.Text>
 					<b>Price: </b>
-					{sunGlass.price}
+					{glass.price}
 				</Card.Text>
 				<Card.Text>
-					<b>Frame Color: </b>
-					{sunGlass.frameColor}
+					<b>Type: </b>
+					{glass.type}
 				</Card.Text>
 				<Card.Text>
-					<b>Frame Shape: </b>
-					{sunGlass.frameShape}
-				</Card.Text>
-				<Card.Text>
-					<b>Glass Color: </b>
-					{sunGlass.glassColor}
-				</Card.Text>
-				<Card.Text>
-					<b>Weight: </b>
-					{sunGlass.weight}
+					<b>Power Range: </b>
+					{glass.powerRange}
 				</Card.Text>
 			</Card.Body>
 			<Button variant="primary" style={{ width: "80%" }}>
@@ -47,4 +39,4 @@ function SunGlass({ sunGlass }) {
 	);
 }
 
-export default SunGlass;
+export default Glass;

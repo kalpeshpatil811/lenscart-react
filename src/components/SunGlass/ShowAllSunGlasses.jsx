@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SunGlassService from "../../services/SunGlassService";
 import SunGlass from "./SunGlass";
-import { Container, CardGroup } from "react-bootstrap";
+import { CardGroup, Container } from "react-bootstrap";
 
 const ShowAllSunGlasses = () => {
 	const [sunGlasses, setSunGlasses] = useState([]);
@@ -14,11 +14,11 @@ const ShowAllSunGlasses = () => {
 
 	return (
 		<>
-			<Container className="p-4">
+			<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
 				<CardGroup>
-					{sunGlasses.map((sunGlass) => (
-						<SunGlass key={sunGlass.id} sunGlass={sunGlass} />
-					))}
+				{sunGlasses.map((sunGlass) => (
+					<SunGlass key={sunGlass.sunGlassId} sunGlass={sunGlass} />
+				))}
 				</CardGroup>
 			</Container>
 		</>
