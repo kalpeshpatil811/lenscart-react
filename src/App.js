@@ -6,8 +6,8 @@ import NavbarComponent from "./components/Navbar/NavbarComponent";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GetCustomerById from "./components/Customer/GetCustomerById";
 import UpdateCustomer from "./components/Customer/UpdateCustomer";
-
 import ShowAllGlass from "./components/Glass/ShowAllGlass";
+import AddSunGlass from "./components/SunGlass/AddSunGlass";
 import AddGlass from "./components/Glass/AddGlass";
 import UpdateGlass from "./components/Glass/UpdateGlass";
 import ShowAllFrames from "./components/Frame/ShowAllFrames";
@@ -20,10 +20,8 @@ import ShowAllFramesAdmin from "./components/Frame/ShowAllFramesAdmin";
 function App() {
 	return (
 		<div className="App">
-			<h1 align="center">LensCart React App</h1>
 			<Router>
 				<NavbarComponent />
-
 				<Routes>
 					<Route path="/addcustomer" element={<AddCustomer />} />
 					<Route path="/login" element={<Login />} />
@@ -35,7 +33,9 @@ function App() {
 					<Route path="/showallglasses" element={<ShowAllGlass />} />
 					<Route path="/addglass" element={<AddGlass />} />
 					<Route path="/updateglass/:glassId" element={<UpdateGlass />} />
+					<Route path="/addsunglass" element={<AddSunGlass />} />
 					<Route path="/updatesunglass/:sunGlassId" element={<UpdateSunGlass />} />
+					<Route path="/showallsunglasses" element={<ShowAllSunGlasses />} />
 					<Route path="/showallsunglassesadmin" element={<ShowAllSunGlassesAdmin />} />
 					<Route path="/showallframesadmin" element={<ShowAllFramesAdmin />} />
 				</Routes>
