@@ -1,6 +1,7 @@
 import "./App.css";
 import AddCustomer from "./components/Customer/AddCustomer";
 import Login from "./components/Customer/Login";
+import AddLens from "./components/Lens/AddLens";
 import ShowAllSunGlasses from "./components/SunGlass/ShowAllSunGlasses";
 import NavbarComponent from "./components/Navbar/NavbarComponent";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -17,6 +18,9 @@ import UpdateSunGlass from "./components/SunGlass/UpdateSunGlass";
 import ShowAllSunGlassesAdmin from "./components/SunGlass/ShowAllSunGlassesAdmin";
 import ShowAllFramesAdmin from "./components/Frame/ShowAllFramesAdmin";
 
+import ShowAllLenses from "./components/Lens/ShowAllLenses";
+import DeleteLens from "./components/Lens/deleteLens";
+import ShowAllLensesAdmin from "./components/Lens/ShowAllLensesAdmin";
 function App() {
 	return (
 		<div className="App">
