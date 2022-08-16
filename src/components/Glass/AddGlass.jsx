@@ -22,7 +22,6 @@ const AddGlass = () => {
 			type: type,
 			powerRange: powerRange,
 			glassImage: glassImage,
-			
 		};
 		console.log(newGlass);
 		GlassService.addGlass(newGlass)
@@ -30,26 +29,25 @@ const AddGlass = () => {
 				console.log(res);
 				console.log("Glass added successfully");
 				alert("Glass added successfully");
-				navigate("/showallglasses");
+				handleCancel();
 			})
 			.catch((err) => {
 				console.log(err);
 				console.log("Error adding Glass");
 				alert("Error adding Glass");
 			});
-			
 	};
 
 	const handleCancel = (e) => {
 		e.preventDefault();
-		navigate("/showallglasses");
+		navigate("/showallglassesadmin");
 	};
 
 	return (
 		<div style={{ display: "flex", justifyContent: "center" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
 				<Form onSubmit={(e) => handleSubmit(e)}>
-					<FloatingLabel controlId="glassName" label="glass Name" className="mb-3">
+					<FloatingLabel controlId="glassName" label="Glass Name" className="mb-3">
 						<Form.Control
 							type="text"
 							placeholder="Enter Glass Name"
@@ -94,7 +92,7 @@ const AddGlass = () => {
 							onChange={(e) => setPowerRange(e.target.value)}
 						/>
 					</FloatingLabel>
-					
+
 					<FloatingLabel controlId="glassImage" label="glassImage" className="mb-3">
 						<Form.Control
 							type="text"

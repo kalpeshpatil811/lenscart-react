@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import AddCustomer from "./components/Customer/AddCustomer";
 import Login from "./components/Customer/Login";
@@ -20,6 +21,7 @@ import ShowAllFramesAdmin from "./components/Frame/ShowAllFramesAdmin";
 import ShowAllLenses from "./components/Lens/ShowAllLenses";
 import ShowAllLensesAdmin from "./components/Lens/ShowAllLensesAdmin";
 import UpdateLens from "./components/Lens/UpdateLens";
+import ShowAllGlassAdmin from "./components/Glass/ShowAllGlassAdmin";
 
 function App() {
 	return (
@@ -31,17 +33,22 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/profile" element={<GetCustomerById />} />
 					<Route path="/updateCustomer/:customerId" element={<UpdateCustomer />} />
+
 					<Route path="/addnewframe" element={<AddFrame />} />
 					<Route path="/showallframes" element={<ShowAllFrames />} />
 					<Route path="/updateframe/:frameId" element={<UpdateFrames />} />
+					<Route path="/showallframesadmin" element={<ShowAllFramesAdmin />} />
+
 					<Route path="/showallglasses" element={<ShowAllGlass />} />
+					<Route path="/showallglassesadmin" element={<ShowAllGlassAdmin />} />
 					<Route path="/addglass" element={<AddGlass />} />
 					<Route path="/updateglass/:glassId" element={<UpdateGlass />} />
+
 					<Route path="/addsunglass" element={<AddSunGlass />} />
 					<Route path="/updatesunglass/:sunGlassId" element={<UpdateSunGlass />} />
 					<Route path="/showallsunglasses" element={<ShowAllSunGlasses />} />
 					<Route path="/showallsunglassesadmin" element={<ShowAllSunGlassesAdmin />} />
-					<Route path="/showallframesadmin" element={<ShowAllFramesAdmin />} />
+
 					<Route path="/showalllenses" element={<ShowAllLenses />} />
 					<Route path="/showalllensesadmin" element={<ShowAllLensesAdmin />} />
 					<Route path="/addlens" element={<AddLens />} />

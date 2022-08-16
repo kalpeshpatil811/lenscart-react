@@ -48,10 +48,6 @@ const UpdateLens = () => {
 			handleClose();
 		});
 	};
-	const handleCancel = (e) => {
-		e.preventDefault();
-		navigate("/showalllenses");
-	};
 
 	return (
 		<div style={{ display: "flex", justifyContent: "center" }}>
@@ -119,7 +115,7 @@ const UpdateLens = () => {
 							</Button>
 						</Col>
 						<Col>
-							<Button variant="danger" onClick={handleCancel}>
+							<Button variant="danger" onClick={handleClose}>
 								Cancel
 							</Button>
 						</Col>

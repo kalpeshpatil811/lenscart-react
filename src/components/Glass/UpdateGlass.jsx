@@ -3,16 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Form, Button, FloatingLabel, Card, Row, Col } from "react-bootstrap";
 import GlassService from "../../services/GlassService";
 
-
 const UpdateGlass = () => {
-    
-    const [glassName, setGlassName] = useState("");
+	const [glassName, setGlassName] = useState("");
 	const [price, setPrice] = useState("");
 	const [brand, setBrand] = useState("");
 	const [type, setType] = useState("");
 	const [powerRange, setPowerRange] = useState("");
-    const [glassImage, setGlassImage] = useState("");
-    const { glassId } = useParams();
+	const [glassImage, setGlassImage] = useState("");
+	const { glassId } = useParams();
 
 	const navigate = useNavigate();
 
@@ -24,44 +22,41 @@ const UpdateGlass = () => {
 			setBrand(glass.brand);
 			setType(glass.type);
 			setGlassImage(glass.glassImage);
-            setPowerRange(glass.powerRange);
-            setType(glass.type);
-            console.log(glass)
-            console.log(glassId)
+			setPowerRange(glass.powerRange);
+			setType(glass.type);
+			console.log(glass);
+			console.log(glassId);
 		});
 	}, [glassId]);
+
 	const handleClose = () => {
-		navigate("/showallglasses");
+		navigate("/showallglassesadmin");
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const responseBody = {
-            glassId:glassId,
+			glassId: glassId,
 			brand: brand,
 			price: price,
 			glassName: glassName,
 			powerRange: powerRange,
 			type: type,
-            glassImage:glassImage,
+			glassImage: glassImage,
 		};
 		console.log(responseBody);
 		GlassService.updateGlass(responseBody).then((res) => {
-            alert("Succesfully Updated!");
+			alert("Succesfully Updated!");
 			handleClose();
 		});
-	};
-	const handleCancel = (e) => {
-		e.preventDefault();
-		navigate("/showallglasses");
 	};
 
 	return (
 		<div style={{ display: "flex", justifyContent: "center" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
-			<h5 className="card-title text-center">Update Glass</h5>
-				<Form onSubmit={(e) => handleSubmit(e)}>			
-				<FloatingLabel controlId="glassName" label="glass Name" className="mb-3">
+				<h5 className="card-title text-center">Update Glass</h5>
+				<Form onSubmit={(e) => handleSubmit(e)}>
+					<FloatingLabel controlId="glassName" label="glass Name" className="mb-3">
 						<Form.Control
 							type="text"
 							placeholder="Enter Glass Name"
@@ -106,7 +101,7 @@ const UpdateGlass = () => {
 							onChange={(e) => setPowerRange(e.target.value)}
 						/>
 					</FloatingLabel>
-					
+
 					<FloatingLabel controlId="glassImage" label="glassImage" className="mb-3">
 						<Form.Control
 							type="text"
@@ -123,7 +118,7 @@ const UpdateGlass = () => {
 							</Button>
 						</Col>
 						<Col>
-							<Button variant="danger" onClick={handleCancel}>
+							<Button variant="danger" onClick={handleClose}>
 								Cancel
 							</Button>
 						</Col>
