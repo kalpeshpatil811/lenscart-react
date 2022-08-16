@@ -1,26 +1,25 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import LensService from "../../services/LensService";
+import GlassService from "../../services/GlassService";
 
-function LensAdmin({ lens, setLens }) {
+function GlassAdmin({ glass, setGlass }) {
 	const navigate = useNavigate();
 
 	const handleDelete = () => {
-		LensService.deleteLens(lens.lensId)
+		GlassService.deleteGlass(glass.glassId)
 			.then((res) => {
-				let updatedLenses = res.data;
-				alert("Lens Deleted Successfully");
-				setLens(updatedLenses);
+				let updateGlass = res.data;
+				alert("Glass Deleted Successfully");
+				setGlass(updateGlass);
 			})
 			.catch((err) => {
-				console.log(err);
-				alert("Error in deleting Lens");
+				alert("Error in deleting Glass");
 			});
 	};
 
 	const handleUpdate = () => {
-		navigate(`/updatelens/${lens.lensId}`);
+		navigate(`/updateglass/${glass.glassId}`);
 	};
 
 	return (
@@ -33,29 +32,26 @@ function LensAdmin({ lens, setLens }) {
 				padding: "10px",
 			}}
 		>
-			<Card.Img height={200} variant="top" src={lens.lenseImage} alt={lens.brand} />
+			<Card.Img height={200} variant="top" src={glass.glassImage} alt={glass.glassName} />
 			<Card.Body>
-				<Card.Title>{lens.brand}</Card.Title>
+				<Card.Title>{glass.glassName}</Card.Title>
 				<Card.Text>
 					<b>Brand: </b>
-					{lens.brand}
+					{glass.brand}
 				</Card.Text>
 				<Card.Text>
 					<b>Price: </b>
-					{lens.price}
+					{glass.price}
 				</Card.Text>
 				<Card.Text>
-					<b>Frame Color: </b>
-					{lens.color}
+					<b>Type: </b>
+					{glass.type}
 				</Card.Text>
 				<Card.Text>
-					<b>Lens Shape: </b>
-					{lens.shape}
+					<b>Power Range: </b>
+					{glass.powerRange}
 				</Card.Text>
-				<Card.Text>
-					<b>Quantity in Box: </b>
-					{lens.quantity}
-				</Card.Text>
+			
 			</Card.Body>
 			<Button variant="warning" style={{ width: "80%", margin: "5px" }} onClick={handleUpdate}>
 				Update
@@ -67,4 +63,4 @@ function LensAdmin({ lens, setLens }) {
 	);
 }
 
-export default LensAdmin;
+export default GlassAdmin;

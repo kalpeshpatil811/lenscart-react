@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import SunGlassService from "../../services/SunGlassService";
-import SunGlassAdmin from "./SunGlassAdmin";
+import FrameService from "../../services/FrameService"
+import FrameAdmin from "./FrameAdmin"
 import { Button, Container } from "react-bootstrap";
 
-const ShowAllSunGlassesAdmin = () => {
-	const [sunGlasses, setSunGlasses] = useState([]);
+const ShowAllFramesAdmin = () => {
+	const [frames, setFrames] = useState([]);
 
 	useEffect(() => {
-		SunGlassService.getAllSunGlasses().then((res) => {
-			setSunGlasses(res.data);
+		FrameService.getAllFrames().then((res) => {
+			setFrames(res.data);
 		});
 	}, []);
 
-	return (
+    return (
 		<>
 			<Container
 				style={{
@@ -25,16 +25,16 @@ const ShowAllSunGlassesAdmin = () => {
 				<Button
 					style={{ margin: "5px", width: "60%" }}
 					variant="outline-success"
-					href="/addsunglass"
+					href="/addnewframe"
 				>
-					Add Sun Glass
+					Add Frame
 				</Button>
 				<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
-					{sunGlasses.map((sunGlass) => (
-						<SunGlassAdmin
-							key={sunGlass.sunGlassId}
-							sunGlass={sunGlass}
-							setSunGlasses={setSunGlasses}
+					{frames.map((frame) => (
+						<FrameAdmin
+							key={frame.frameId}
+							frame={frame}
+							setFrames={setFrames}
 						/>
 					))}
 				</Container>
@@ -42,5 +42,4 @@ const ShowAllSunGlassesAdmin = () => {
 		</>
 	);
 };
-
-export default ShowAllSunGlassesAdmin;
+export default ShowAllFramesAdmin;

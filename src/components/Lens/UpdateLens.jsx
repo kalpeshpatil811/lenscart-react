@@ -3,9 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import LensService from "../../services/LensService";
 import { Form, Button, FloatingLabel, Card, Row, Col } from "react-bootstrap";
 
-
 const UpdateLens = () => {
-
 	const [brand, setBrand] = useState("");
 	const [price, setPrice] = useState("");
 	const [color, setColor] = useState("");
@@ -25,8 +23,8 @@ const UpdateLens = () => {
 			setShape(lens.shape);
 			setQuantity(lens.quantity);
 			setlenseImage(lens.lenseImage);
-			console.log(lens)
-			console.log(lensId)
+			console.log(lens);
+			console.log(lensId);
 		});
 	}, [lensId]);
 	const handleClose = () => {
@@ -42,17 +40,13 @@ const UpdateLens = () => {
 			color: color,
 			shape: shape,
 			quantity: quantity,
-			lenseImage: lenseImage
+			lenseImage: lenseImage,
 		};
 		console.log(responseBody);
 		LensService.updateLens(responseBody).then((res) => {
 			alert("Succesfully Updated!");
 			handleClose();
 		});
-	};
-	const handleCancel = (e) => {
-		e.preventDefault();
-		navigate("/showalllensesadmin");
 	};
 
 	return (
@@ -121,7 +115,7 @@ const UpdateLens = () => {
 							</Button>
 						</Col>
 						<Col>
-							<Button variant="danger" onClick={handleCancel}>
+							<Button variant="danger" onClick={handleClose}>
 								Cancel
 							</Button>
 						</Col>
@@ -132,4 +126,7 @@ const UpdateLens = () => {
 	);
 };
 
+<<<<<<< HEAD
+export default UpdateLens;
+=======
 export default UpdateLens;

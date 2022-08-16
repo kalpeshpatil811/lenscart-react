@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import SunGlassService from "../../services/SunGlassService";
-import SunGlassAdmin from "./SunGlassAdmin";
+import GlassAdmin from "./GlassAdmin";
 import { Button, Container } from "react-bootstrap";
+import GlassService from "../../services/GlassService";
 
-const ShowAllSunGlassesAdmin = () => {
-	const [sunGlasses, setSunGlasses] = useState([]);
+const ShowAllGlassAdmin = () => {
+	const [glass, setGlass] = useState([]);
 
 	useEffect(() => {
-		SunGlassService.getAllSunGlasses().then((res) => {
-			setSunGlasses(res.data);
+		GlassService.getAllGlass().then((res) => {
+			setGlass(res.data);
 		});
 	}, []);
 
@@ -25,16 +25,16 @@ const ShowAllSunGlassesAdmin = () => {
 				<Button
 					style={{ margin: "5px", width: "60%" }}
 					variant="outline-success"
-					href="/addsunglass"
+					href="/addglass"
 				>
-					Add Sun Glass
+					Add Glass
 				</Button>
 				<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
-					{sunGlasses.map((sunGlass) => (
-						<SunGlassAdmin
-							key={sunGlass.sunGlassId}
-							sunGlass={sunGlass}
-							setSunGlasses={setSunGlasses}
+					{glass.map((glass) => (
+						<GlassAdmin
+							key={glass.glassId}
+							glass={glass}
+							setGlass={setGlass}
 						/>
 					))}
 				</Container>
@@ -43,4 +43,4 @@ const ShowAllSunGlassesAdmin = () => {
 	);
 };
 
-export default ShowAllSunGlassesAdmin;
+export default ShowAllGlassAdmin;

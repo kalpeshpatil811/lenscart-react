@@ -22,20 +22,12 @@ const ShowAllLensesAdmin = () => {
 					alignItems: "center",
 				}}
 			>
-				<Button
-					style={{ margin: "5px", width: "60%" }}
-					variant="outline-success"
-					href="/addlens"
-				>
+				<Button style={{ margin: "5px", width: "60%" }} variant="outline-success" href="/addlens">
 					Add Lens
 				</Button>
 				<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
 					{lens.map((lens) => (
-						<LensAdmin
-							key={lens.lensId}
-							lens={lens}
-							setLens={setLens}
-						/>
+						<LensAdmin key={lens.lensId} lens={lens} setLens={setLens} />
 					))}
 				</Container>
 			</Container>
@@ -43,4 +35,5 @@ const ShowAllLensesAdmin = () => {
 	);
 };
 
+<<<<<<< HEAD
 export default ShowAllLensesAdmin;
