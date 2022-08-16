@@ -13,7 +13,6 @@ import UpdateGlass from "./components/Glass/UpdateGlass";
 import UpdateLens from "./components/Lens/UpdateLens";
 
 import ShowAllLenses from "./components/Lens/ShowAllLenses"
-import DeleteLens from "./components/Lens/deleteLens";
 import ShowAllLensesAdmin from "./components/Lens/ShowAllLensesAdmin";
 function App() {
 	return (
@@ -35,7 +34,6 @@ function App() {
 					<Route path="/addlens" element={<AddLens />} />
 					<Route path="/showalllenses" element={<ShowAllLenses /> } />
 					<Route path="/updatelens/:lensId" element={<UpdateLens /> } />
-					<Route path="/deletelens/:lensId" element={<DeleteLens /> } />
 					<Route path="/showalllensesadmin" element={<ShowAllLensesAdmin />} />
 
 				</Routes>

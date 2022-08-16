@@ -29,7 +29,7 @@ const AddLens = () => {
 				console.log(res);
 				console.log("Lens added successfully");
 				alert("Lens added successfully");
-				navigate("/showalllenses");
+				navigate("/showalllensesadmin");
 			})
 			.catch((err) => {
 				console.log(err);
@@ -40,7 +40,7 @@ const AddLens = () => {
 
 	const handleCancel = (e) => {
 		e.preventDefault();
-		navigate("/showalllenses");
+		navigate("/showalllensesadmin");
 	};
 
 	return (

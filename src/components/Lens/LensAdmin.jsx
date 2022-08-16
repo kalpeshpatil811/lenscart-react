@@ -7,7 +7,7 @@ function LensAdmin({ lens, setLens }) {
 	const navigate = useNavigate();
 
 	const handleDelete = () => {
-		LensService.deleteLens(lens.lenId)
+		LensService.deleteLens(lens.lensId)
 			.then((res) => {
 				let updatedLenses = res.data;
 				alert("Lens Deleted Successfully");
