@@ -98,7 +98,7 @@ const AddFrame = () => {
 							onChange={(e) => setDescription(e.target.value)}
 						/>
 					</FloatingLabel>
-
+					
 					<FloatingLabel controlId="shapeOptions" label="Shape Options of frame" className="mb-3">
 						<Form.Control
 							type="text"
@@ -108,15 +108,17 @@ const AddFrame = () => {
 							onChange={(e) => setShapeOptions(e.target.value)}
 						/>
 					</FloatingLabel>
-
+					
 					<FloatingLabel controlId="size" label="Frame size" className="mb-3">
-						<Form.Select type="text" aria-label="Floating label select example" value={size}
+						<Form.Select type="text" aria-label="Floating label select example" size="sm" value={size}
 							onChange={(e) => setSize(e.target.value)} required>
+								<option> Select size from below options</option>
 							<option value="small">Small</option>
 							<option value="medium">Medium</option>
 							<option value="large">Large</option>
 						</Form.Select>
 					</FloatingLabel>
+					
 
 					<FloatingLabel controlId="frameImage" label="Frame Image URL" className="mb-3">
 						<Form.Control
