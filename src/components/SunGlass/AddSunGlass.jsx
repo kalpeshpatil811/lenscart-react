@@ -50,7 +50,7 @@ const AddSunGlass = () => {
 	return (
 		<div style={{ display: "flex", justifyContent: "center" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
-				<Form onSubmit={() => handleSubmit}>
+				<Form onSubmit={(e) => handleSubmit(e)}>
 					<FloatingLabel controlId="sunGlassName" label="SunGlass Name" className="mb-3">
 						<Form.Control
 							type="text"

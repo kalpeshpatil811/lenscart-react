@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GlassService from "../../services/GlassService";
 import { useNavigate } from "react-router-dom";
+import { Form, Button, FloatingLabel, Card, Row, Col } from "react-bootstrap";
 
 const AddGlass = () => {
 	// Create state variables for each input field
@@ -28,129 +29,96 @@ const AddGlass = () => {
 			.then((res) => {
 				console.log(res);
 				console.log("Glass added successfully");
+				alert("Glass added successfully");
+				navigate("/showallglasses");
 			})
 			.catch((err) => {
 				console.log(err);
 				console.log("Error adding Glass");
-			})
-			.finally(() => {
-				navigate("/");
+				alert("Error adding Glass");
 			});
+			
+	};
+
+	const handleCancel = (e) => {
+		e.preventDefault();
+		navigate("/showallglasses");
 	};
 
 	return (
-		<div align="center">
-			<div className="card" style={{ width: "50rem" }}>
-				<form className="card-body" onSubmit={(e) => handleSubmit(e)}>
-					<h5 className="card-title">Add Glass</h5>
-					<hr />
-					{/* <!-- SunGlass Name input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="sunGlassName">
-							Glass Name
-						</label>
-						<input
+		<div style={{ display: "flex", justifyContent: "center" }}>
+			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
+				<Form onSubmit={(e) => handleSubmit(e)}>
+					<FloatingLabel controlId="glassName" label="glass Name" className="mb-3">
+						<Form.Control
 							type="text"
-							id="glassName"
-							className="form-control"
+							placeholder="Enter Glass Name"
+							required
 							value={glassName}
 							onChange={(e) => setGlassName(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- Brand input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="brand">
-							Brand
-						</label>
-						<input
+					</FloatingLabel>
+					<FloatingLabel controlId="brand" label="Brand" className="mb-3">
+						<Form.Control
 							type="text"
-							id="brand"
-							className="form-control"
+							placeholder="Enter Brand"
+							required
 							value={brand}
 							onChange={(e) => setBrand(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- Price input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="price">
-							Power Range
-						</label>
-						<input
+					</FloatingLabel>
+					<FloatingLabel controlId="price" label="Price" className="mb-3">
+						<Form.Control
 							type="number"
-							id="powerRange"
-							className="form-control"
-							value={powerRange}
-							onChange={(e) => setPowerRange(e.target.value)}
-						/>
-					</div>
-
-					{/* <!-- Frame Color input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="frameColor">
-							Type
-						</label>
-						<input
-							type="text"
-							id="type"
-							className="form-control"
-							value={type}
-							onChange={(e) => setType(e.target.value)}
-						/>
-					</div>
-
-					{/* <!-- Frame Shape input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="frameShape">
-							price
-						</label>
-						<input
-							type="text"
-							id="price"
-							className="form-control"
+							placeholder="Enter Price"
+							required
 							value={price}
 							onChange={(e) => setPrice(e.target.value)}
 						/>
-					</div>
-
-					{/* <!-- Glass Color input --> */}
-					<div className="form-outline mb-4">
-						<label className="form-label" htmlFor="glassColor">
-							Glass Image
-						</label>
-						<input
+					</FloatingLabel>
+					<FloatingLabel controlId="type" label="type" className="mb-3">
+						<Form.Control
 							type="text"
-							id="glassImage"
-							className="form-control"
+							placeholder="Enter Glass Type"
+							required
+							value={type}
+							onChange={(e) => setType(e.target.value)}
+						/>
+					</FloatingLabel>
+					<FloatingLabel controlId="powerRange" label="powerRange" className="mb-3">
+						<Form.Control
+							type="text"
+							placeholder="Enter Power Range"
+							required
+							value={powerRange}
+							onChange={(e) => setPowerRange(e.target.value)}
+						/>
+					</FloatingLabel>
+					
+					<FloatingLabel controlId="glassImage" label="glassImage" className="mb-3">
+						<Form.Control
+							type="text"
+							placeholder="Enter Image URL"
+							required
 							value={glassImage}
 							onChange={(e) => setGlassImage(e.target.value)}
 						/>
-					</div>
-
-					
-					{/* <!-- Submit button and Cancel button--> */}
-
-					<div className="row mb-4">
-						<div className="col">
-							<div className="form-outline">
-								<button type="submit" className="btn btn-primary btn-block mb-4">
-									Submit
-								</button>
-							</div>
-						</div>
-						<div className="col">
-							<div className="form-outline">
-								<button type="submit" className="btn btn-danger btn-block mb-4">
-									Cancel
-								</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
+					</FloatingLabel>
+					<Row>
+						<Col>
+							<Button variant="primary" type="submit">
+								Submit
+							</Button>
+						</Col>
+						<Col>
+							<Button variant="danger" onClick={handleCancel}>
+								Cancel
+							</Button>
+						</Col>
+					</Row>
+				</Form>
+			</Card>
 		</div>
 	);
 };
-
 export default AddGlass;
