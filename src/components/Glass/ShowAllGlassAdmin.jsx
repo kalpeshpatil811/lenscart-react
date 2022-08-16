@@ -10,7 +10,7 @@ const ShowAllGlassAdmin = () => {
 		GlassService.getAllGlass().then((res) => {
 			setGlass(res.data);
 		});
-	}, [glass]);
+	}, []);
 
 	return (
 		<>
@@ -25,7 +25,7 @@ const ShowAllGlassAdmin = () => {
 				<Button
 					style={{ margin: "5px", width: "60%" }}
 					variant="outline-success"
-					href="/addsunglass"
+					href="/addglass"
 				>
 					Add Glass
 				</Button>
