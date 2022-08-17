@@ -1,52 +1,58 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import LensService from "../../services/LensService";
-import { useNavigate } from "react-router-dom";
 import { Form, Button, FloatingLabel, Card, Row, Col } from "react-bootstrap";
 
-const AddLens = () => {
-	// Create state variables for each input field
+const UpdateLens = () => {
 	const [brand, setBrand] = useState("");
 	const [price, setPrice] = useState("");
 	const [color, setColor] = useState("");
 	const [shape, setShape] = useState("");
-	const [lenseImage, setLenseImage] = useState("");
+	const [lenseImage, setlenseImage] = useState("");
 	const [quantity, setQuantity] = useState("");
+	const { lensId } = useParams();
+
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		LensService.getLensById(lensId).then((res) => {
+			let lens = res.data;
+			setBrand(lens.brand);
+			setPrice(lens.price);
+			setColor(lens.color);
+			setShape(lens.shape);
+			setQuantity(lens.quantity);
+			setlenseImage(lens.lenseImage);
+			console.log(lens);
+			console.log(lensId);
+		});
+	}, [lensId]);
+	const handleClose = () => {
+		navigate("/showalllensesadmin");
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const newLens = {
+		const responseBody = {
+			lensId: lensId,
 			brand: brand,
 			price: price,
 			color: color,
 			shape: shape,
-			lenseImage: lenseImage,
 			quantity: quantity,
+			lenseImage: lenseImage,
 		};
-		console.log(newLens);
-		LensService.createLens(newLens)
-			.then((res) => {
-				console.log(res);
-				console.log("Lens added successfully");
-				alert("Lens added successfully");
-				navigate("/showalllensesadmin");
-			})
-			.catch((err) => {
-				console.log(err);
-				console.log("Error adding Lens");
-				alert("Error adding Lens");
-			});
-	};
-
-	const handleCancel = (e) => {
-		e.preventDefault();
-		navigate("/showalllensesadmin");
+		console.log(responseBody);
+		LensService.updateLens(responseBody).then((res) => {
+			alert("Succesfully Updated!");
+			handleClose();
+		});
 	};
 
 	return (
 		<div style={{ display: "flex", justifyContent: "center" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
-				<h5 className="card-title text-center">Add Contact Lens</h5>
+				<h5 className="card-title text-center">Update Contact Lens</h5>
 				<Form onSubmit={(e) => handleSubmit(e)}>
 					<FloatingLabel controlId="brand" label="Brand" className="mb-3">
 						<Form.Control
@@ -90,7 +96,7 @@ const AddLens = () => {
 							placeholder="Enter Image URL"
 							required
 							value={lenseImage}
-							onChange={(e) => setLenseImage(e.target.value)}
+							onChange={(e) => setlenseImage(e.target.value)}
 						/>
 					</FloatingLabel>
 					<FloatingLabel controlId="quantity" label="Quantity" className="mb-3">
@@ -109,7 +115,7 @@ const AddLens = () => {
 							</Button>
 						</Col>
 						<Col>
-							<Button variant="danger" onClick={handleCancel}>
+							<Button variant="danger" onClick={handleClose}>
 								Cancel
 							</Button>
 						</Col>
@@ -120,4 +126,4 @@ const AddLens = () => {
 	);
 };
 
-export default AddLens;
+export default UpdateLens;

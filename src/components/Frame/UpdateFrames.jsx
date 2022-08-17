@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import FrameService from "../../services/FrameService";
-import { useNavigate } from "react-router-dom";
-import { Form, Button, FloatingLabel, Card, Row, Col } from "react-bootstrap";
+import { Card, Form, FloatingLabel, Row, Col, Button } from "react-bootstrap";
 
-const AddFrame = () => {
-	// Create state variables for each input field
+const UpdateFrames = () => {
+	const { frameId } = useParams();
 	const [frameName, setFrameName] = useState("");
 	const [brand, setBrand] = useState("");
 	const [color, setColor] = useState("");
@@ -13,11 +13,34 @@ const AddFrame = () => {
 	const [shapeOptions, setShapeOptions] = useState("");
 	const [size, setSize] = useState("");
 	const [frameImage, setFrameImage] = useState("");
+
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		FrameService.getFrameById(frameId).then((res) => {
+			let frame = res.data;
+			setFrameName(frame.frameName);
+			setBrand(frame.brand);
+			setColor(frame.color);
+			setPrice(frame.price);
+			setDescription(frame.description);
+			setShapeOptions(frame.shapeOptions);
+			setSize(frame.size);
+			setFrameImage(frame.frameImage);
+		})
+			.catch((err) => {
+				console.log("No frame found with id: " + frameId);
+			});
+	}, [frameId]);
+
+	const handleClose = () => {
+		navigate("/showallframesadmin");
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const newFrame = {
+		const responseBody = {
+			frameId: frameId,
 			frameName: frameName,
 			brand: brand,
 			color: color,
@@ -27,26 +50,26 @@ const AddFrame = () => {
 			size: size,
 			frameImage: frameImage,
 		};
-		console.log(newFrame);
-		FrameService.addFrame(newFrame)
-			.then((res) => {
-				alert("Frame added successfully");
-				handleCancel();
-			})
+
+		FrameService.updateFrame(responseBody).then((res) => {
+			alert("Frame Succesfully Updated!");
+			console.log(res.data);
+			handleClose();
+		})
 			.catch((err) => {
-				alert("Error adding frame");
-			})
-
-	};
-
-	const handleCancel = () => {
-		navigate("/showallframesadmin");
+				alert("Frame Update Failed");
+				console.log(err);
+			});
 	};
 
 	return (
 		<div style={{ display: "flex", justifyContent: "center" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
 				<Form onSubmit={(e) => handleSubmit(e)}>
+
+					<FloatingLabel controlId="frameId" label="Frame ID" className="mb-3">
+						<Form.Control type="text" placeholder="Enter Frame ID" disabled value={frameId} />
+					</FloatingLabel>
 
 					<FloatingLabel controlId="frameName" label="Frame Name" className="mb-3">
 						<Form.Control
@@ -128,26 +151,22 @@ const AddFrame = () => {
 						/>
 					</FloatingLabel>
 
-
-
-					{/* <!-- Submit button and Cancel button--> */}
-
+					{/* <!-- Submit button --> */}
 					<Row>
 						<Col>
 							<Button variant="primary" type="submit">
-								Submit
+								Update
 							</Button>
 						</Col>
 						<Col>
-							<Button variant="danger" onClick={handleCancel}>
-								Cancel
+							<Button variant="danger" onClick={handleClose}>
+								Close
 							</Button>
 						</Col>
 					</Row>
 				</Form>
 			</Card>
 		</div>
-
 	);
 };
-export default AddFrame;
+export default UpdateFrames;
