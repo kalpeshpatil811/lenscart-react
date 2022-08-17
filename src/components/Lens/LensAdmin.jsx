@@ -45,7 +45,7 @@ function LensAdmin({ lens, setLens }) {
 					{lens.price}
 				</Card.Text>
 				<Card.Text>
-					<b>Frame Color: </b>
+					<b>Color: </b>
 					{lens.color}
 				</Card.Text>
 				<Card.Text>

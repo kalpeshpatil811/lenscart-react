@@ -21,7 +21,7 @@ const AddLens = () => {
 			color: color,
 			shape: shape,
 			lenseImage: lenseImage,
-			quantity: quantity 
+			quantity: quantity
 		};
 		console.log(newLens);
 		LensService.createLens(newLens)
@@ -46,8 +46,8 @@ const AddLens = () => {
 	return (
 		<div style={{ display: "flex", justifyContent: "center" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
-			<h5 className="card-title text-center">Add Contact Lens</h5>
-				<Form onSubmit={(e) => handleSubmit(e)}>			
+				<h5 className="card-title text-center">Add Contact Lens</h5>
+				<Form onSubmit={(e) => handleSubmit(e)}>
 					<FloatingLabel controlId="brand" label="Brand" className="mb-3">
 						<Form.Control
 							type="text"
@@ -75,14 +75,16 @@ const AddLens = () => {
 							onChange={(e) => setColor(e.target.value)}
 						/>
 					</FloatingLabel>
-					<FloatingLabel controlId="shape" label="Lens Shape" className="mb-3">
-						<Form.Control
-							type="text"
-							placeholder="Enter Lens Shape"
-							required
-							value={shape}
-							onChange={(e) => setShape(e.target.value)}
-						/>
+					<FloatingLabel controlId="shape" label="Shape" className="mb-3">
+						<Form.Select type="text" aria-label="Floating label select example" value={shape}
+							onChange={(e) => setShape(e.target.value)} required>
+							<option>Select Shape</option>
+							<option value="Hard Lens">Hard Lens</option>
+							<option value="Soft Lens">Soft Lens</option>
+							<option value="Hybrid Lens">Hybrid Lens</option>
+							<option value="Multifocal Lens">Multifocal Lens</option>
+							<option value="Scleral Lens">Scleral Lens</option>
+						</Form.Select>
 					</FloatingLabel>
 					<FloatingLabel controlId="lenseImage" label="Image URL" className="mb-3">
 						<Form.Control
@@ -95,6 +97,7 @@ const AddLens = () => {
 					</FloatingLabel>
 					<FloatingLabel controlId="quantity" label="Quantity" className="mb-3">
 						<Form.Control
+							min="1"
 							type="number"
 							placeholder="Enter Quantity in Box"
 							required

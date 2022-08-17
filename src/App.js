@@ -22,6 +22,7 @@ import ShowAllLenses from "./components/Lens/ShowAllLenses";
 import ShowAllLensesAdmin from "./components/Lens/ShowAllLensesAdmin";
 import UpdateLens from "./components/Lens/UpdateLens";
 import ShowAllGlassAdmin from "./components/Glass/ShowAllGlassAdmin";
+import ShowAllCartItems from "./components/Cart/ShowAllCartItems";
 
 function App() {
 	return (
@@ -53,6 +54,8 @@ function App() {
 					<Route path="/showalllensesadmin" element={<ShowAllLensesAdmin />} />
 					<Route path="/addlens" element={<AddLens />} />
 					<Route path="/updatelens/:lensId" element={<UpdateLens />} />
+					
+					<Route path="/cart" element={<ShowAllCartItems />} />
 				</Routes>
 			</Router>
 		</div>
