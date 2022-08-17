@@ -30,21 +30,16 @@ const AddSunGlass = () => {
 		console.log(newSunGlass);
 		SunGlassService.createSunGlass(newSunGlass)
 			.then((res) => {
-				console.log(res);
-				console.log("Sunglass added successfully");
 				alert("Sunglass added successfully");
-				navigate("/showallsunglasses");
+				navigate("/showallsunglassesadmin");
 			})
 			.catch((err) => {
-				console.log(err);
-				console.log("Error adding Sunglass");
 				alert("Error adding Sunglass");
 			});
 	};
 
-	const handleCancel = (e) => {
-		e.preventDefault();
-		navigate("/showallsunglasses");
+	const handleCancel = () => {
+		navigate("/showallsunglassesadmin");
 	};
 
 	return (

@@ -75,14 +75,21 @@ const AddLens = () => {
 							onChange={(e) => setColor(e.target.value)}
 						/>
 					</FloatingLabel>
-					<FloatingLabel controlId="shape" label="Lens Shape" className="mb-3">
-						<Form.Control
+					<FloatingLabel controlId="shape" label="Shape" className="mb-3">
+						<Form.Select
 							type="text"
-							placeholder="Enter Lens Shape"
-							required
+							aria-label="Floating label select example"
 							value={shape}
 							onChange={(e) => setShape(e.target.value)}
-						/>
+							required
+						>
+							<option>Select Shape</option>
+							<option value="Hard Lens">Hard Lens</option>
+							<option value="Soft Lens">Soft Lens</option>
+							<option value="Hybrid Lens">Hybrid Lens</option>
+							<option value="Multifocal Lens">Multifocal Lens</option>
+							<option value="Scleral Lens">Scleral Lens</option>
+						</Form.Select>
 					</FloatingLabel>
 					<FloatingLabel controlId="lenseImage" label="Image URL" className="mb-3">
 						<Form.Control
@@ -95,6 +102,7 @@ const AddLens = () => {
 					</FloatingLabel>
 					<FloatingLabel controlId="quantity" label="Quantity" className="mb-3">
 						<Form.Control
+							min="1"
 							type="number"
 							placeholder="Enter Quantity in Box"
 							required

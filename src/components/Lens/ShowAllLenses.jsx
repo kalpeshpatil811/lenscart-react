@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, CardGroup } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Lens from "./Lens";
 import LensService from "../../services/LensService";
 
@@ -15,11 +15,9 @@ const ShowAllLenses = () => {
 	return (
 		<>
 			<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
-				<CardGroup>
-					{lenses.map((lens) => (
-						<Lens key={lens.lensId} lens={lens} />
-					))}
-				</CardGroup>
+				{lenses.map((lens) => (
+					<Lens key={lens.lensId} lens={lens} />
+				))}
 			</Container>
 		</>
 	);
