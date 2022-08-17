@@ -21,7 +21,7 @@ const AddLens = () => {
 			color: color,
 			shape: shape,
 			lenseImage: lenseImage,
-			quantity: quantity
+			quantity: quantity,
 		};
 		console.log(newLens);
 		LensService.createLens(newLens)
@@ -40,7 +40,7 @@ const AddLens = () => {
 
 	const handleCancel = (e) => {
 		e.preventDefault();
-		navigate("/showalllenses");
+		navigate("/showalllensesadmin");
 	};
 
 	return (
@@ -76,8 +76,13 @@ const AddLens = () => {
 						/>
 					</FloatingLabel>
 					<FloatingLabel controlId="shape" label="Shape" className="mb-3">
-						<Form.Select type="text" aria-label="Floating label select example" value={shape}
-							onChange={(e) => setShape(e.target.value)} required>
+						<Form.Select
+							type="text"
+							aria-label="Floating label select example"
+							value={shape}
+							onChange={(e) => setShape(e.target.value)}
+							required
+						>
 							<option>Select Shape</option>
 							<option value="Hard Lens">Hard Lens</option>
 							<option value="Soft Lens">Soft Lens</option>

@@ -15,9 +15,9 @@ const ShowAllLenses = () => {
 	return (
 		<>
 			<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
-					{lenses.map((lens) => (
-						<Lens key={lens.lensId} lens={lens} />
-					))}
+				{lenses.map((lens) => (
+					<Lens key={lens.lensId} lens={lens} />
+				))}
 			</Container>
 		</>
 	);

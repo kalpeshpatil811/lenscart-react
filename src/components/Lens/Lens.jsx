@@ -3,7 +3,6 @@ import Card from "react-bootstrap/Card";
 import CartService from "../../services/CartService";
 import { getCustomerInfo } from "../Customer/CustomerInfo";
 function Lens({ lens }) {
-
 	const handleAddToCart = () => {
 		try {
 			var custId = getCustomerInfo().customerId;
@@ -14,7 +13,7 @@ function Lens({ lens }) {
 				brand: lens.brand,
 				price: lens.price,
 				image: lens.lenseImage,
-				customerId: custId
+				customerId: custId,
 			};
 			console.log(cartItems);
 			CartService.addToCart(cartItems)
@@ -32,9 +31,7 @@ function Lens({ lens }) {
 		} catch (error) {
 			alert("Please Log In First!");
 		}
-	}
-
-
+	};
 
 	return (
 		<Card

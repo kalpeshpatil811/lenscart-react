@@ -82,8 +82,13 @@ const UpdateLens = () => {
 						/>
 					</FloatingLabel>
 					<FloatingLabel controlId="shape" label="Lens Shape" className="mb-3">
-						<Form.Select type="text" aria-label="Floating label select example" value={shape}
-							onChange={(e) => setShape(e.target.value)} required>
+						<Form.Select
+							type="text"
+							aria-label="Floating label select example"
+							value={shape}
+							onChange={(e) => setShape(e.target.value)}
+							required
+						>
 							<option>Select Shape</option>
 							<option value="Hard Lens">Hard Lens</option>
 							<option value="Soft Lens">Soft Lens</option>

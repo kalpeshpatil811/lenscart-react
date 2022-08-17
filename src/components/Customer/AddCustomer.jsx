@@ -32,8 +32,8 @@ const AddCustomer = () => {
 		CustomerService.addCustomer(newCustomer)
 			.then((res) => {
 				console.log(res);
-				console.log("customer added successfully");
-				navigate("/login");
+				console.log("Customer Added Successfully");
+				navigate("/");
 			})
 			.catch((err) => {
 				console.log(err.response.data);
@@ -43,13 +43,13 @@ const AddCustomer = () => {
 				setPasswordError(err.response.data.password);
 
 				if (err.response.status === 409) {
-					alert("Customername should be unique");
+					alert("Customer Name Should be Unique");
 				}
 			});
 	};
 	const handleCancel = (e) => {
 		e.preventDefault();
-		navigate("/login");
+		navigate("/");
 	};
 
 	return (
