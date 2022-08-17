@@ -90,7 +90,7 @@ const AddCustomer = () => {
 
 					<FloatingLabel controlId="password" label="Password" className="mb-3">
 						<Form.Control
-							type="text"
+							type="password"
 							placeholder="Enter Password"
 							required
 							value={password}
@@ -123,93 +123,6 @@ const AddCustomer = () => {
 				</Form>
 			</Card>
 		</div>
-
-		// <div align="center">
-		//   <div className="card" style={{ width: "50rem" }}>
-		//     <form className="card-body" onSubmit={(e) => handleSubmit(e)}>
-		//       <h5 className="card-title">Add </h5>
-		//       <hr />
-		//       {/* <!-- Customer Name input --> */}
-		//       <div className="form-outline mb-4">
-		//         <label className="form-label" htmlFor="customerName">
-		//           Customer Name
-		//         </label>
-		//         <input
-		//           type="text"
-		//           id="customerName"
-		//           className="form-control"
-		//           value={customerName}
-		//           onChange={(e) => setCustomerName(e.target.value)}
-		//         />
-		//         <p style={{color:"red"}}>{customerNameError}</p>
-		//       </div>
-
-		//       {/* <!-- Email input --> */}
-		//       <div className="form-outline mb-4">
-		//         <label className="form-label" htmlFor="email">
-		//           Email
-		//         </label>
-		//         <input
-		//           type="text"
-		//           id="email"
-		//           className="form-control"
-		//           value={email}
-		//           onChange={(e) => setEmail(e.target.value)}
-		//         />
-		//         <p style={{color:"red"}}>{emailError}</p>
-		//       </div>
-
-		//       {/* <!-- Number input --> */}
-		//       <div className="form-outline mb-4">
-		//         <label className="form-label" htmlFor="number">
-		//           Mobile Number
-		//         </label>
-		//         <input
-		//           type="text"
-		//           id="number"
-		//           className="form-control"
-		//           value={number}
-		//           onChange={(e) => setNumber(e.target.value)}
-		//         />
-		//         <p style={{color:"red"}}>{numberError}</p>
-
-		//       </div>
-
-		//       {/* <!-- password input --> */}
-		//       <div className="form-outline mb-4">
-		//         <label className="form-label" htmlFor="password">
-		//           Password
-		//         </label>
-		//         <input
-		//           type="text"
-		//           id="password"
-		//           className="form-control"
-		//           value={password}
-		//           onChange={(e) => setPassword(e.target.value)}
-		//         />
-		//         <p style={{color:"red"}}>{passwordError}</p>
-
-		//       </div>
-		//       <div className="row mb-4">
-		//         <div className="col">
-		//           <div className="form-outline">
-		//             <button type="submit" className="btn btn-primary btn-block mb-4">
-		//               Submit
-		//             </button>
-		//           </div>
-		//         </div>
-		//         <div className="col">
-		//           <div className="form-outline">
-		//             <button type="submit" className="btn btn-danger btn-block mb-4">
-		//               Cancel
-		//             </button>
-		//           </div>
-		//         </div>
-		//       </div>
-
-		//     </form>
-		//   </div>
-		// </div>
 	);
 };
 export default AddCustomer;

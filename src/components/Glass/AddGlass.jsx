@@ -86,7 +86,7 @@ const AddGlass = () => {
 					</FloatingLabel>
 					<FloatingLabel controlId="powerRange" label="powerRange" className="mb-3">
 						<Form.Control
-							type="text"
+							type="number"
 							placeholder="Enter Power Range"
 							required
 							value={powerRange}
