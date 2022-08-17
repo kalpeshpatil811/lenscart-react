@@ -15,11 +15,11 @@ const ShowAllSunGlasses = () => {
 	return (
 		<>
 			<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
-				<CardGroup>
+				
 				{sunGlasses.map((sunGlass) => (
 					<SunGlass key={sunGlass.sunGlassId} sunGlass={sunGlass} />
 				))}
-				</CardGroup>
+				
 			</Container>
 		</>
 	);

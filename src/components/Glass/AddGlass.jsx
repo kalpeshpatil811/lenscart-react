@@ -29,7 +29,7 @@ const AddGlass = () => {
 				console.log(res);
 				console.log("Glass added successfully");
 				alert("Glass added successfully");
-				handleCancel();
+				navigate("/showallglassesadmin");
 			})
 			.catch((err) => {
 				console.log(err);
@@ -77,15 +77,16 @@ const AddGlass = () => {
 					<FloatingLabel controlId="type" label="Type" className="mb-3">
 						<Form.Select type="text" aria-label="Floating label select example" value={type}
 							onChange={(e) => setType(e.target.value)} required>
-							<option value="zero power">zero power</option>
-							<option value="digital screen protection">digital screen protection</option>
-							<option value="single vision">single vision</option>
-							<option value="bifocal powered glass">bifocal powered glass</option>
+							<option>Select Type</option>
+							<option value="zero power">Zero Power</option>
+							<option value="digital screen protection">Digital Screen Protection</option>
+							<option value="single vision">Single Vision</option>
+							<option value="bifocal powered glass">Bifocal Powered Glass</option>
 						</Form.Select>
 					</FloatingLabel>
 					<FloatingLabel controlId="powerRange" label="powerRange" className="mb-3">
 						<Form.Control
-							type="text"
+							type="number"
 							placeholder="Enter Power Range"
 							required
 							value={powerRange}

@@ -15,11 +15,11 @@ const ShowAllFrames = () => {
 	return (
 		<>
 			<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
-				<CardGroup>
+				
 					{frames.map((frame) => (
 						<Frames key={frame.frameId} frame={frame} />
 					))}
-				</CardGroup>
+				
 			</Container>
 		</>
 	);

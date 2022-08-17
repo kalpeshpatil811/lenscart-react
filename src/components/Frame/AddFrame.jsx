@@ -31,7 +31,7 @@ const AddFrame = () => {
 		FrameService.addFrame(newFrame)
 			.then((res) => {
 				alert("Frame added successfully");
-				handleCancel();
+				navigate("/showallframesadmin");
 			})
 			.catch((err) => {
 				alert("Error adding frame");
@@ -112,6 +112,7 @@ const AddFrame = () => {
 					<FloatingLabel controlId="size" label="Frame size" className="mb-3">
 						<Form.Select type="text" aria-label="Floating label select example" value={size}
 							onChange={(e) => setSize(e.target.value)} required>
+							<option>Select Size</option>
 							<option value="small">Small</option>
 							<option value="medium">Medium</option>
 							<option value="large">Large</option>
