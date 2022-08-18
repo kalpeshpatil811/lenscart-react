@@ -45,7 +45,7 @@ const UpdateCustomer = () => {
         CustomerService.updateCustomer(newCustomer).then((res) => {
             console.log(res);
             console.log("customer Updated successfully");
-            navigate(`/profile/${customerId}`);
+            navigate("/profile");
         })
             .catch((err) => {
                 console.log(err.response.data);

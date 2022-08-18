@@ -29,7 +29,7 @@ function GetCustomerById() {
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-    <Card style={{ width: "30rem", padding: "40px", margin: "30px" }}>
+    <Card style={{ width: "30rem", padding: "40px", margin: "30px", boxShadow: "0px 0px 10px 1px " }} >
       <Form onSubmit={(e) => handleSubmit(e)}>
       <Card.Body>
           <Card.Title>Profile Details</Card.Title>

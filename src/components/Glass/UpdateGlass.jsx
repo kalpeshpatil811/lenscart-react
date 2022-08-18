@@ -83,14 +83,15 @@ const UpdateGlass = () => {
 							onChange={(e) => setPrice(e.target.value)}
 						/>
 					</FloatingLabel>
-					<FloatingLabel controlId="type" label="type" className="mb-3">
-						<Form.Control
-							type="text"
-							placeholder="Enter Glass Type"
-							required
-							value={type}
-							onChange={(e) => setType(e.target.value)}
-						/>
+					<FloatingLabel controlId="type" label="Type" className="mb-3">
+						<Form.Select type="text" aria-label="Floating label select example" value={type}
+							onChange={(e) => setType(e.target.value)} required>
+							<option>Select Type</option>
+							<option value="zero power">Zero Power</option>
+							<option value="digital screen protection">Digital Screen Protection</option>
+							<option value="single vision">Single Vision</option>
+							<option value="bifocal powered glass">Bifocal Powered Glass</option>
+						</Form.Select>
 					</FloatingLabel>
 					<FloatingLabel controlId="powerRange" label="powerRange" className="mb-3">
 						<Form.Control
