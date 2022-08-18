@@ -20,6 +20,7 @@ const ShowAllLensesAdmin = () => {
 					flexDirection: "column",
 					padding: "10px",
 					alignItems: "center",
+					minHeight: "85vh",
 				}}
 			>
 				<Button style={{ margin: "5px", width: "60%" }} variant="outline-success" href="/addlens">

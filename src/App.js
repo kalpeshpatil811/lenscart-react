@@ -25,6 +25,7 @@ import ShowAllGlassAdmin from "./components/Glass/ShowAllGlassAdmin";
 import { getCustomerInfo } from "./components/Customer/CustomerInfo";
 import Home from "./components/Home/Home";
 import ShowAllCartItems from "./components/Cart/ShowAllCartItems";
+import Footer from "./components/Footer/Footer";
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -91,6 +92,7 @@ function App() {
 					)}
 				</Routes>
 			</Router>
+			<Footer />
 		</div>
 	);
 }

@@ -20,22 +20,15 @@ const ShowAllGlassAdmin = () => {
 					flexDirection: "column",
 					padding: "10px",
 					alignItems: "center",
+					minHeight: "85vh",
 				}}
 			>
-				<Button
-					style={{ margin: "5px", width: "60%" }}
-					variant="outline-success"
-					href="/addglass"
-				>
+				<Button style={{ margin: "5px", width: "60%" }} variant="outline-success" href="/addglass">
 					Add Glass
 				</Button>
 				<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
 					{glass.map((glass) => (
-						<GlassAdmin
-							key={glass.glassId}
-							glass={glass}
-							setGlass={setGlass}
-						/>
+						<GlassAdmin key={glass.glassId} glass={glass} setGlass={setGlass} />
 					))}
 				</Container>
 			</Container>

@@ -2,12 +2,11 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import CartService from "../../services/CartService";
 import { getCustomerInfo } from "../Customer/CustomerInfo";
+
 function Lens({ lens }) {
 	const handleAddToCart = () => {
 		try {
-			var custId = getCustomerInfo().customerId;
-			if (!custId) {
-			}
+			const custId = getCustomerInfo().customerId;
 			const cartItems = {
 				name: lens.brand,
 				brand: lens.brand,
@@ -21,7 +20,6 @@ function Lens({ lens }) {
 					console.log(res);
 					console.log("Added To Cart successfully");
 					alert("Added To Cart successfully");
-					// navigate("/showalllensesadmin");
 				})
 				.catch((err) => {
 					console.log(err);

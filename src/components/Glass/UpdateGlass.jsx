@@ -52,7 +52,7 @@ const UpdateGlass = () => {
 	};
 
 	return (
-		<div style={{ display: "flex", justifyContent: "center" }}>
+		<div style={{ display: "flex", justifyContent: "center", minHeight: "85vh" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
 				<h5 className="card-title text-center">Update Glass</h5>
 				<Form onSubmit={(e) => handleSubmit(e)}>

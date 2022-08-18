@@ -1,7 +1,35 @@
 import Button from "react-bootstrap/Button";
 import { Card } from "react-bootstrap";
+import CartService from "../../services/CartService";
+import { getCustomerInfo } from "../Customer/CustomerInfo";
 
 function Glass({ glass }) {
+	const handleAddToCart = () => {
+		try {
+			const custId = getCustomerInfo().customerId;
+			const cartItems = {
+				name: glass.glassName,
+				brand: glass.brand,
+				price: glass.price,
+				image: glass.glassImage,
+				customerId: custId,
+			};
+			console.log(cartItems);
+			CartService.addToCart(cartItems)
+				.then((res) => {
+					console.log(res);
+					console.log("Added To Cart successfully");
+					alert("Added To Cart successfully");
+				})
+				.catch((err) => {
+					console.log(err);
+					console.log("Error adding Glass");
+					alert("Error Adding To Cart");
+				});
+		} catch (error) {
+			alert("Please Log In First!");
+		}
+	};
 	return (
 		<Card
 			style={{
@@ -32,7 +60,7 @@ function Glass({ glass }) {
 					{glass.powerRange}
 				</Card.Text>
 			</Card.Body>
-			<Button variant="primary" style={{ width: "80%" }}>
+			<Button variant="primary" style={{ width: "80%" }} onClick={handleAddToCart}>
 				Add To Cart
 			</Button>
 		</Card>
