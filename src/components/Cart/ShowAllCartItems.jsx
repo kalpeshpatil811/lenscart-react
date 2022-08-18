@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Button, Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import CartService from "../../services/CartService";
 import { getCustomerInfo } from "../Customer/CustomerInfo";
 import Cart from "./Cart";
+
 const ShowAllCartItems = () => {
+    const navigate = useNavigate();
+
+    const handleClearCart = () => {
+        var answer = window.confirm("Place Order?");
+        if (answer) {
+            navigate("/order");
+        }
+        else {
+        }
+    }
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
         let custId = getCustomerInfo().customerId;
         CartService.getAllCartItemsByCustomerId(custId).then((res) => {
             setCart(res.data);
+
         });
     }, []);
     // console.log(cart);
@@ -34,10 +47,9 @@ const ShowAllCartItems = () => {
                     alignItems: "center",
                 }}
             ><h3>Total Amount: ₹{totalPrice}</h3>
-                <Button
+                <Button onClick={handleClearCart}
                     style={{ margin: "5px", width: "60%" }}
                     variant="outline-success"
-                    href="/payment"
                 >
                     Proceed to Checkout!
                 </Button>

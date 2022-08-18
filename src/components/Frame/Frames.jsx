@@ -1,7 +1,38 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import CartService from "../../services/CartService";
+import { getCustomerInfo } from "../Customer/CustomerInfo";
 
 function Frames({ frame }) {
+	const handleAddToCart = () => {
+		try {
+			var custId = getCustomerInfo().customerId;
+			if (!custId) {
+			}
+			const cartItems = {
+				name: frame.frameName,
+				brand: frame.brand,
+				price: frame.price,
+				image: frame.frameImage,
+				customerId: custId,
+			};
+			console.log(cartItems);
+			CartService.addToCart(cartItems)
+				.then((res) => {
+					console.log(res);
+					console.log("Added To Cart successfully");
+					alert("Added To Cart successfully");
+					// navigate("/showalllensesadmin");
+				})
+				.catch((err) => {
+					console.log(err);
+					console.log("Error adding Lens");
+					alert("Error Adding To Cart");
+				});
+		} catch (error) {
+			alert("Please Log In First!");
+		}
+	};
 	return (
 		<Card
 			style={{
@@ -35,7 +66,7 @@ function Frames({ frame }) {
 					<b>Size :</b> {frame.size}
 				</Card.Text>
 			</Card.Body>
-			<Button variant="primary" style={{ width: "80%" }}>
+			<Button variant="primary" style={{ width: "80%" }} onClick={handleAddToCart}>
 				Add To Cart
 			</Button>
 		</Card>

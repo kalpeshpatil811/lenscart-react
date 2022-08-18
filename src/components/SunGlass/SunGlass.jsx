@@ -1,7 +1,29 @@
 import Button from "react-bootstrap/Button";
 import { Card } from "react-bootstrap";
+import CartService from "../../services/CartService";
+import { getCustomerInfo } from "../Customer/CustomerInfo";
 
 function SunGlass({ sunGlass }) {
+	const handleAddToCart = () => {
+		const customerId = getCustomerInfo().customerId;
+		const cartItem = {
+			name: sunGlass.sunGlassName,
+			brand: sunGlass.brand,
+			price: sunGlass.price,
+			image: sunGlass.image,
+			customerId: customerId,
+		};
+		CartService.addToCart(cartItem)
+			.then((res) => {
+				console.log(res.data);
+				alert("Added To Cart Successfully");
+			})
+			.catch((err) => {
+				console.log(err);
+				alert("Error Adding To Cart");
+			});
+	};
+
 	return (
 		<Card
 			style={{
@@ -40,7 +62,7 @@ function SunGlass({ sunGlass }) {
 					{sunGlass.weight}
 				</Card.Text>
 			</Card.Body>
-			<Button variant="primary" style={{ width: "80%" }}>
+			<Button variant="primary" style={{ width: "80%" }} onClick={handleAddToCart}>
 				Add To Cart
 			</Button>
 		</Card>

@@ -4,7 +4,7 @@ const Customer_API_BASE_URL = "http://localhost:9091/lenscart/customer";
 
 class CustomerService {
 	login(customer) {
-		return axios.post(Customer_API_BASE_URL+"/login",customer);
+		return axios.post(Customer_API_BASE_URL + "/login", customer);
 	}
 
 	addCustomer(customer) {
@@ -12,19 +12,19 @@ class CustomerService {
 	}
 
 	logout() {
-	 	return axios.get(Customer_API_BASE_URL + "/logout");
-	 }
+		return axios.get(Customer_API_BASE_URL + "/logout");
+	}
 
-	 getCustomerById(customerId) {
+	getCustomerById(customerId) {
 		return axios.get(Customer_API_BASE_URL + "/" + customerId);
 	}
 
-	updateCustomer(customer){
-		return axios.put(Customer_API_BASE_URL,customer)
+	updateCustomer(customer) {
+		return axios.put(Customer_API_BASE_URL, customer)
 	}
 
-	deleteCustomerById(customerId){
-		return axios.delete(Customer_API_BASE_URL+"/"+customerId)
+	deleteCustomerById(customerId) {
+		return axios.delete(Customer_API_BASE_URL + "/" + customerId)
 	}
 
 	// getByCustomerName(customerName) {

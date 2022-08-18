@@ -72,11 +72,7 @@ function App() {
 									<Route exact path="/showallglassesadmin" element={<ShowAllGlassAdmin />} />
 									<Route exact path="/addsunglass" element={<AddSunGlass />} />
 									<Route exact path="/updatesunglass/:sunGlassId" element={<UpdateSunGlass />} />
-									<Route
-										exact
-										path="/showallsunglassesadmin"
-										element={<ShowAllSunGlassesAdmin />}
-									/>
+									<Route exact path="/showallsunglassesadmin" element={<ShowAllSunGlassesAdmin />} />
 									<Route exact path="/addlens" element={<AddLens />} />
 									<Route exact path="/updatelens/:lensId" element={<UpdateLens />} />
 									<Route exact path="/showalllensesadmin" element={<ShowAllLensesAdmin />} />

@@ -122,14 +122,19 @@ const UpdateFrames = () => {
 						/>
 					</FloatingLabel>
 
-					<FloatingLabel controlId="shapeOptions" label="Shape Options of frame" className="mb-3">
-						<Form.Control
-							type="text"
-							placeholder="Enter shape"
-							required
-							value={shapeOptions}
-							onChange={(e) => setShapeOptions(e.target.value)}
-						/>
+					<FloatingLabel controlId="shapeOptions" label="Frame options" className="mb-3">
+						<Form.Select type="text" aria-label="Floating label select example" size="sm" value={shapeOptions}
+							onChange={(e) => setShapeOptions(e.target.value)} required>
+							<option> Select shape from below options</option>
+							<option value="Round">Round</option>
+							<option value="Cat-Eye">Cat-Eye</option>
+							<option value="Transparent">Transparent</option>
+							<option value="Clubmaster">Clubmaster</option>
+							<option value="Blend Edit">Blend Edit</option>
+							<option value="Air Clip On">Air Clip On</option>
+							<option value="Air Flex">Air Flex</option>
+							<option value="Retro Aviator">Retro Aviator</option>
+						</Form.Select>
 					</FloatingLabel>
 
 					<FloatingLabel controlId="size" label="Frame size" className="mb-3">
