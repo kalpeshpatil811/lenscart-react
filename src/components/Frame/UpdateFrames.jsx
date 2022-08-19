@@ -17,17 +17,18 @@ const UpdateFrames = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		FrameService.getFrameById(frameId).then((res) => {
-			let frame = res.data;
-			setFrameName(frame.frameName);
-			setBrand(frame.brand);
-			setColor(frame.color);
-			setPrice(frame.price);
-			setDescription(frame.description);
-			setShapeOptions(frame.shapeOptions);
-			setSize(frame.size);
-			setFrameImage(frame.frameImage);
-		})
+		FrameService.getFrameById(frameId)
+			.then((res) => {
+				let frame = res.data;
+				setFrameName(frame.frameName);
+				setBrand(frame.brand);
+				setColor(frame.color);
+				setPrice(frame.price);
+				setDescription(frame.description);
+				setShapeOptions(frame.shapeOptions);
+				setSize(frame.size);
+				setFrameImage(frame.frameImage);
+			})
 			.catch((err) => {
 				console.log("No frame found with id: " + frameId);
 			});
@@ -51,11 +52,12 @@ const UpdateFrames = () => {
 			frameImage: frameImage,
 		};
 
-		FrameService.updateFrame(responseBody).then((res) => {
-			alert("Frame Succesfully Updated!");
-			console.log(res.data);
-			handleClose();
-		})
+		FrameService.updateFrame(responseBody)
+			.then((res) => {
+				alert("Frame Succesfully Updated!");
+				console.log(res.data);
+				handleClose();
+			})
 			.catch((err) => {
 				alert("Frame Update Failed");
 				console.log(err);
@@ -66,7 +68,6 @@ const UpdateFrames = () => {
 		<div style={{ display: "flex", justifyContent: "center" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
 				<Form onSubmit={(e) => handleSubmit(e)}>
-
 					<FloatingLabel controlId="frameId" label="Frame ID" className="mb-3">
 						<Form.Control type="text" placeholder="Enter Frame ID" disabled value={frameId} />
 					</FloatingLabel>
@@ -101,7 +102,6 @@ const UpdateFrames = () => {
 						/>
 					</FloatingLabel>
 
-
 					<FloatingLabel controlId="price" label="Brand Price" className="mb-3">
 						<Form.Control
 							type="number"
@@ -133,8 +133,14 @@ const UpdateFrames = () => {
 					</FloatingLabel>
 
 					<FloatingLabel controlId="size" label="Frame size" className="mb-3">
-						<Form.Select type="text" aria-label="Floating label select example" value={size}
-							onChange={(e) => setSize(e.target.value)} required>
+						<Form.Select
+							type="text"
+							aria-label="Floating label select example"
+							value={size}
+							onChange={(e) => setSize(e.target.value)}
+							required
+						>
+							<option> Select size from below options</option>
 							<option value="small">Small</option>
 							<option value="medium">Medium</option>
 							<option value="large">Large</option>

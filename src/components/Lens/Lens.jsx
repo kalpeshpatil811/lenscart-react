@@ -1,23 +1,40 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-
+import CartService from "../../services/CartService";
+import { getCustomerInfo } from "../Customer/CustomerInfo";
 function Lens({ lens }) {
-	// return (
-	// 	<Card style={{ width: "18rem" }}>
-	// 		<Card.Img height={200} variant="top" src={lens.lenseImage} alt={lens.brand} />
-	// 		<Card.Body>
-	// 			<Card.Text>{lens.brand}</Card.Text>
-	// 			<Card.Text>{lens.price}</Card.Text>
-	// 			<Card.Text>{lens.color}</Card.Text>
-	// 			<Card.Text>{lens.shape}</Card.Text>
-	// 			<Card.Text>{lens.quantity}</Card.Text>
-	// 			<Button variant="primary">Buy</Button>
-	// 		</Card.Body>
-	// 	</Card>
-	// );
+	const handleAddToCart = () => {
+		try {
+			var custId = getCustomerInfo().customerId;
+			if (!custId) {
+			}
+			const cartItems = {
+				name: lens.brand,
+				brand: lens.brand,
+				price: lens.price,
+				image: lens.lenseImage,
+				customerId: custId,
+			};
+			console.log(cartItems);
+			CartService.addToCart(cartItems)
+				.then((res) => {
+					console.log(res);
+					console.log("Added To Cart successfully");
+					alert("Added To Cart successfully");
+					// navigate("/showalllensesadmin");
+				})
+				.catch((err) => {
+					console.log(err);
+					console.log("Error adding Lens");
+					alert("Error Adding To Cart");
+				});
+		} catch (error) {
+			alert("Please Log In First!");
+		}
+	};
 
 	return (
-		<Card 
+		<Card
 			style={{
 				width: "400px",
 				margin: "10px",
@@ -38,7 +55,7 @@ function Lens({ lens }) {
 					{lens.price}
 				</Card.Text>
 				<Card.Text>
-					<b>Frame Color: </b>
+					<b>Color: </b>
 					{lens.color}
 				</Card.Text>
 				<Card.Text>
@@ -50,7 +67,7 @@ function Lens({ lens }) {
 					{lens.quantity}
 				</Card.Text>
 			</Card.Body>
-			<Button variant="primary" style={{ width: "80%" }}>
+			<Button variant="primary" style={{ width: "80%" }} onClick={handleAddToCart}>
 				Add To Cart
 			</Button>
 		</Card>
