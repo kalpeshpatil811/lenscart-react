@@ -44,7 +44,7 @@ const AddGlass = () => {
 	};
 
 	return (
-		<div style={{ display: "flex", justifyContent: "center" }}>
+		<div style={{ display: "flex", justifyContent: "center", minHeight: "85vh" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
 				<Form onSubmit={(e) => handleSubmit(e)}>
 					<FloatingLabel controlId="glassName" label="Glass Name" className="mb-3">

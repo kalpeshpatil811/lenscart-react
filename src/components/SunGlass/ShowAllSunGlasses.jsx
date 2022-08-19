@@ -14,7 +14,14 @@ const ShowAllSunGlasses = () => {
 
 	return (
 		<>
-			<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
+			<Container
+				style={{
+					display: "flex",
+					flexWrap: "wrap",
+					justifyContent: "space-evenly",
+					minHeight: "85vh",
+				}}
+			>
 				{sunGlasses.map((sunGlass) => (
 					<SunGlass key={sunGlass.sunGlassId} sunGlass={sunGlass} />
 				))}

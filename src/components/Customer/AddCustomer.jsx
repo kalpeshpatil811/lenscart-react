@@ -53,7 +53,7 @@ const AddCustomer = () => {
 	};
 
 	return (
-		<div style={{ display: "flex", justifyContent: "center" }}>
+		<div style={{ display: "flex", justifyContent: "center", minHeight: "85vh" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
 				<Form onSubmit={(e) => handleSubmit(e)}>
 					<FloatingLabel controlId="customerName" label="Customer Name" className="mb-3">

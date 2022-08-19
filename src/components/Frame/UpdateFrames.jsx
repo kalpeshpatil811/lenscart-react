@@ -65,7 +65,7 @@ const UpdateFrames = () => {
 	};
 
 	return (
-		<div style={{ display: "flex", justifyContent: "center" }}>
+		<div style={{ display: "flex", justifyContent: "center", minHeight: "85vh" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
 				<Form onSubmit={(e) => handleSubmit(e)}>
 					<FloatingLabel controlId="frameId" label="Frame ID" className="mb-3">
@@ -122,14 +122,25 @@ const UpdateFrames = () => {
 						/>
 					</FloatingLabel>
 
-					<FloatingLabel controlId="shapeOptions" label="Shape Options of frame" className="mb-3">
-						<Form.Control
+					<FloatingLabel controlId="shapeOptions" label="Frame options" className="mb-3">
+						<Form.Select
 							type="text"
-							placeholder="Enter shape"
-							required
+							aria-label="Floating label select example"
+							size="sm"
 							value={shapeOptions}
 							onChange={(e) => setShapeOptions(e.target.value)}
-						/>
+							required
+						>
+							<option> Select shape from below options</option>
+							<option value="Round">Round</option>
+							<option value="Cat-Eye">Cat-Eye</option>
+							<option value="Transparent">Transparent</option>
+							<option value="Clubmaster">Clubmaster</option>
+							<option value="Blend Edit">Blend Edit</option>
+							<option value="Air Clip On">Air Clip On</option>
+							<option value="Air Flex">Air Flex</option>
+							<option value="Retro Aviator">Retro Aviator</option>
+						</Form.Select>
 					</FloatingLabel>
 
 					<FloatingLabel controlId="size" label="Frame size" className="mb-3">
