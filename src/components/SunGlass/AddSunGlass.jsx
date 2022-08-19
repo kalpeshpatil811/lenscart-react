@@ -43,7 +43,7 @@ const AddSunGlass = () => {
 	};
 
 	return (
-		<div style={{ display: "flex", justifyContent: "center" }}>
+		<div style={{ display: "flex", justifyContent: "center", minHeight: "85vh" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
 				<Form onSubmit={(e) => handleSubmit(e)}>
 					<FloatingLabel controlId="sunGlassName" label="SunGlass Name" className="mb-3">
@@ -83,13 +83,23 @@ const AddSunGlass = () => {
 						/>
 					</FloatingLabel>
 					<FloatingLabel controlId="frameShape" label="Frame Shape" className="mb-3">
-						<Form.Control
+						<Form.Select
 							type="text"
-							placeholder="Enter Frame Shape"
-							required
+							aria-label="Enter Frame Shape"
+							size="sm"
 							value={frameShape}
 							onChange={(e) => setFrameShape(e.target.value)}
-						/>
+							required
+						>
+							<option> Select shape from below options</option>
+							<option value="Aviator">Aviator</option>
+							<option value="Rounders">Rounders</option>
+							<option value="Wayfarer">Wayfarer</option>
+							<option value="Rectangle">Rectangle</option>
+							<option value="Hexagon">Hexagon</option>
+							<option value="Cat-Eye">Cat-Eye</option>
+							<option value="Clubmaster">Clubmaster</option>
+						</Form.Select>
 					</FloatingLabel>
 					<FloatingLabel controlId="glassColor" label="Glass Color" className="mb-3">
 						<Form.Control

@@ -14,7 +14,14 @@ const ShowAllFrames = () => {
 
 	return (
 		<>
-			<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
+			<Container
+				style={{
+					display: "flex",
+					flexWrap: "wrap",
+					justifyContent: "space-evenly",
+					minHeight: "85vh",
+				}}
+			>
 				{frames.map((frame) => (
 					<Frames key={frame.frameId} frame={frame} />
 				))}

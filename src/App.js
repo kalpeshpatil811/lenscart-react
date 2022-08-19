@@ -25,6 +25,7 @@ import ShowAllGlassAdmin from "./components/Glass/ShowAllGlassAdmin";
 import { getCustomerInfo } from "./components/Customer/CustomerInfo";
 import Home from "./components/Home/Home";
 import ShowAllCartItems from "./components/Cart/ShowAllCartItems";
+import Footer from "./components/Footer/Footer";
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -72,7 +73,11 @@ function App() {
 									<Route exact path="/showallglassesadmin" element={<ShowAllGlassAdmin />} />
 									<Route exact path="/addsunglass" element={<AddSunGlass />} />
 									<Route exact path="/updatesunglass/:sunGlassId" element={<UpdateSunGlass />} />
-									<Route exact path="/showallsunglassesadmin" element={<ShowAllSunGlassesAdmin />} />
+									<Route
+										exact
+										path="/showallsunglassesadmin"
+										element={<ShowAllSunGlassesAdmin />}
+									/>
 									<Route exact path="/addlens" element={<AddLens />} />
 									<Route exact path="/updatelens/:lensId" element={<UpdateLens />} />
 									<Route exact path="/showalllensesadmin" element={<ShowAllLensesAdmin />} />
@@ -87,6 +92,7 @@ function App() {
 					)}
 				</Routes>
 			</Router>
+			<Footer />
 		</div>
 	);
 }

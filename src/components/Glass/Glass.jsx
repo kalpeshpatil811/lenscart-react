@@ -6,9 +6,7 @@ import { getCustomerInfo } from "../Customer/CustomerInfo";
 function Glass({ glass }) {
 	const handleAddToCart = () => {
 		try {
-			var custId = getCustomerInfo().customerId;
-			if (!custId) {
-			}
+			const custId = getCustomerInfo().customerId;
 			const cartItems = {
 				name: glass.glassName,
 				brand: glass.brand,
@@ -22,7 +20,6 @@ function Glass({ glass }) {
 					console.log(res);
 					console.log("Added To Cart successfully");
 					alert("Added To Cart successfully");
-					// navigate("/showallglassesadmin");
 				})
 				.catch((err) => {
 					console.log(err);

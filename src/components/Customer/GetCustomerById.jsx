@@ -28,31 +28,57 @@ function GetCustomerById({ setIsLoggedIn }) {
 	};
 
 	return (
-		<div style={{ display: "flex", justifyContent: "center" }}>
-			<Card style={{ width: "30rem", padding: "40px", margin: "30px" }}>
-				<Form onSubmit={(e) => handleSubmit(e)}>
-					<Card.Body>
-						<Card.Title>Profile Details</Card.Title>
-						<Card.Text>Name: {customer.customerName}</Card.Text>
-						<Card.Text>Email Address: {customer.email}</Card.Text>
-						<Card.Text>Password: {customer.password}</Card.Text>
-						<Card.Text>Mobile No: {customer.number}</Card.Text>
-						<Card.Text>Address: {customer.address}</Card.Text>
-						<Row>
-							<Col>
-								<Button variant="primary" type="submit">
-									Update
-								</Button>
-							</Col>
-							<Col>
-								<Button variant="danger" onClick={handleDelete}>
-									Delete
-								</Button>
-							</Col>
-						</Row>
-					</Card.Body>
-				</Form>
-			</Card>
+		<div
+			style={{
+				backgroundColor: "#8EC5FC",
+				backgroundImage: "linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)",
+			}}
+		>
+			<div
+				style={{
+					display: "flex",
+					justifyContent: "center",
+					minHeight: "85vh",
+					fontSize: "18px",
+					fontWeight: "bold",
+				}}
+			>
+				<Card
+					style={{
+						width: "30rem",
+						padding: "40px",
+						margin: "30px",
+						backgroundColor: "#FFDEE9",
+						backgroundImage: "linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%)",
+					}}
+				>
+					<Form onSubmit={(e) => handleSubmit(e)}>
+						<Card.Body>
+							<Card.Title>
+								<h2>Profile Details</h2>
+							</Card.Title>
+							<hr />
+							<Card.Text>Name: {customer.customerName}</Card.Text>
+							<Card.Text>Email Address: {customer.email}</Card.Text>
+							<Card.Text>Password: {customer.password}</Card.Text>
+							<Card.Text>Mobile No: {customer.number}</Card.Text>
+							<Card.Text>Address: {customer.address}</Card.Text>
+							<Row>
+								<Col>
+									<Button variant="primary" type="submit">
+										Update
+									</Button>
+								</Col>
+								<Col>
+									<Button variant="danger" onClick={handleDelete}>
+										Delete
+									</Button>
+								</Col>
+							</Row>
+						</Card.Body>
+					</Form>
+				</Card>
+			</div>
 		</div>
 	);
 }

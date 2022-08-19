@@ -20,6 +20,7 @@ const ShowAllFramesAdmin = () => {
 					flexDirection: "column",
 					padding: "10px",
 					alignItems: "center",
+					minHeight: "85vh",
 				}}
 			>
 				<Button

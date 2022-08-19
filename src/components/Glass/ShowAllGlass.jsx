@@ -14,7 +14,14 @@ const ShowAllGlass = () => {
 
 	return (
 		<>
-			<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
+			<Container
+				style={{
+					display: "flex",
+					flexWrap: "wrap",
+					justifyContent: "space-evenly",
+					minHeight: "85vh",
+				}}
+			>
 				{glass.map((glass) => (
 					<Glass key={glass.glassId} glass={glass} />
 				))}

@@ -43,7 +43,7 @@ const AddFrame = () => {
 	};
 
 	return (
-		<div style={{ display: "flex", justifyContent: "center" }}>
+		<div style={{ display: "flex", justifyContent: "center", minHeight: "85vh" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
 				<Form onSubmit={(e) => handleSubmit(e)}>
 					<FloatingLabel controlId="frameName" label="Frame Name" className="mb-3">
@@ -97,8 +97,14 @@ const AddFrame = () => {
 					</FloatingLabel>
 
 					<FloatingLabel controlId="shapeOptions" label="Frame options" className="mb-3">
-						<Form.Select type="text" aria-label="Floating label select example" size="sm" value={shapeOptions}
-							onChange={(e) => setShapeOptions(e.target.value)} required>
+						<Form.Select
+							type="text"
+							aria-label="Floating label select example"
+							size="sm"
+							value={shapeOptions}
+							onChange={(e) => setShapeOptions(e.target.value)}
+							required
+						>
 							<option> Select shape from below options</option>
 							<option value="Round">Round</option>
 							<option value="Cat-Eye">Cat-Eye</option>

@@ -6,9 +6,7 @@ import { getCustomerInfo } from "../Customer/CustomerInfo";
 function Frames({ frame }) {
 	const handleAddToCart = () => {
 		try {
-			var custId = getCustomerInfo().customerId;
-			if (!custId) {
-			}
+			const custId = getCustomerInfo().customerId;
 			const cartItems = {
 				name: frame.frameName,
 				brand: frame.brand,
@@ -22,7 +20,6 @@ function Frames({ frame }) {
 					console.log(res);
 					console.log("Added To Cart successfully");
 					alert("Added To Cart successfully");
-					// navigate("/showalllensesadmin");
 				})
 				.catch((err) => {
 					console.log(err);
