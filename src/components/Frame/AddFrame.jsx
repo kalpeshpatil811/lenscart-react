@@ -31,12 +31,11 @@ const AddFrame = () => {
 		FrameService.addFrame(newFrame)
 			.then((res) => {
 				alert("Frame added successfully");
-				navigate("/showallframesadmin");
+				handleCancel();
 			})
 			.catch((err) => {
 				alert("Error adding frame");
-			})
-
+			});
 	};
 
 	const handleCancel = () => {
@@ -47,7 +46,6 @@ const AddFrame = () => {
 		<div style={{ display: "flex", justifyContent: "center" }}>
 			<Card style={{ width: "60%", padding: "20px", margin: "10px" }}>
 				<Form onSubmit={(e) => handleSubmit(e)}>
-
 					<FloatingLabel controlId="frameName" label="Frame Name" className="mb-3">
 						<Form.Control
 							type="text"
@@ -77,7 +75,6 @@ const AddFrame = () => {
 							onChange={(e) => setColor(e.target.value)}
 						/>
 					</FloatingLabel>
-
 
 					<FloatingLabel controlId="price" label="Brand Price" className="mb-3">
 						<Form.Control
@@ -110,9 +107,15 @@ const AddFrame = () => {
 					</FloatingLabel>
 
 					<FloatingLabel controlId="size" label="Frame size" className="mb-3">
-						<Form.Select type="text" aria-label="Floating label select example" value={size}
-							onChange={(e) => setSize(e.target.value)} required>
-							<option>Select Size</option>
+						<Form.Select
+							type="text"
+							aria-label="Floating label select example"
+							size="sm"
+							value={size}
+							onChange={(e) => setSize(e.target.value)}
+							required
+						>
+							<option> Select size from below options</option>
 							<option value="small">Small</option>
 							<option value="medium">Medium</option>
 							<option value="large">Large</option>
@@ -128,8 +131,6 @@ const AddFrame = () => {
 							onChange={(e) => setFrameImage(e.target.value)}
 						/>
 					</FloatingLabel>
-
-
 
 					{/* <!-- Submit button and Cancel button--> */}
 
@@ -148,7 +149,6 @@ const AddFrame = () => {
 				</Form>
 			</Card>
 		</div>
-
 	);
 };
 export default AddFrame;

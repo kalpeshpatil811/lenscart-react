@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import AddCustomer from "./components/Customer/AddCustomer";
 import Login from "./components/Customer/Login";
@@ -22,37 +22,73 @@ import ShowAllLenses from "./components/Lens/ShowAllLenses";
 import ShowAllLensesAdmin from "./components/Lens/ShowAllLensesAdmin";
 import UpdateLens from "./components/Lens/UpdateLens";
 import ShowAllGlassAdmin from "./components/Glass/ShowAllGlassAdmin";
+import { getCustomerInfo } from "./components/Customer/CustomerInfo";
+import Home from "./components/Home/Home";
+import ShowAllCartItems from "./components/Cart/ShowAllCartItems";
 
 function App() {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [role, setRole] = useState("");
+
+	useEffect(() => {
+		if (getCustomerInfo() != null) {
+			setIsLoggedIn(true);
+			setRole(getCustomerInfo().role);
+		}
+	}, [isLoggedIn, role]);
+
 	return (
 		<div className="App">
 			<Router>
-				<NavbarComponent />
+				<NavbarComponent isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} role={role} />
 				<Routes>
-					<Route path="/addcustomer" element={<AddCustomer />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/profile" element={<GetCustomerById />} />
-					<Route path="/updateCustomer/:customerId" element={<UpdateCustomer />} />
+					{isLoggedIn ? (
+						<>
+							<Route exact path="/home" element={<Home />} />
+							<Route
+								exact
+								path="/profile"
+								element={<GetCustomerById setIsLoggedIn={setIsLoggedIn} />}
+							/>
+							<Route exact path="/updateCustomer/:customerId" element={<UpdateCustomer />} />
 
-					<Route path="/addnewframe" element={<AddFrame />} />
-					<Route path="/showallframes" element={<ShowAllFrames />} />
-					<Route path="/updateframe/:frameId" element={<UpdateFrames />} />
-					<Route path="/showallframesadmin" element={<ShowAllFramesAdmin />} />
+							{role === "customer" ? (
+								<>
+									<Route exact path="/showallframes" element={<ShowAllFrames />} />
+									<Route exact path="/showallglasses" element={<ShowAllGlass />} />
+									<Route exact path="/showallsunglasses" element={<ShowAllSunGlasses />} />
+									<Route exact path="/showalllenses" element={<ShowAllLenses />} />
+									<Route path="/cart" element={<ShowAllCartItems />} />
+								</>
+							) : undefined}
 
-					<Route path="/showallglasses" element={<ShowAllGlass />} />
-					<Route path="/showallglassesadmin" element={<ShowAllGlassAdmin />} />
-					<Route path="/addglass" element={<AddGlass />} />
-					<Route path="/updateglass/:glassId" element={<UpdateGlass />} />
-
-					<Route path="/addsunglass" element={<AddSunGlass />} />
-					<Route path="/updatesunglass/:sunGlassId" element={<UpdateSunGlass />} />
-					<Route path="/showallsunglasses" element={<ShowAllSunGlasses />} />
-					<Route path="/showallsunglassesadmin" element={<ShowAllSunGlassesAdmin />} />
-
-					<Route path="/showalllenses" element={<ShowAllLenses />} />
-					<Route path="/showalllensesadmin" element={<ShowAllLensesAdmin />} />
-					<Route path="/addlens" element={<AddLens />} />
-					<Route path="/updatelens/:lensId" element={<UpdateLens />} />
+							{role === "admin" ? (
+								<>
+									<Route exact path="/addnewframe" element={<AddFrame />} />
+									<Route exact path="/updateframe/:frameId" element={<UpdateFrames />} />
+									<Route exact path="/showallframesadmin" element={<ShowAllFramesAdmin />} />
+									<Route exact path="/addglass" element={<AddGlass />} />
+									<Route exact path="/updateglass/:glassId" element={<UpdateGlass />} />
+									<Route exact path="/showallglassesadmin" element={<ShowAllGlassAdmin />} />
+									<Route exact path="/addsunglass" element={<AddSunGlass />} />
+									<Route exact path="/updatesunglass/:sunGlassId" element={<UpdateSunGlass />} />
+									<Route
+										exact
+										path="/showallsunglassesadmin"
+										element={<ShowAllSunGlassesAdmin />}
+									/>
+									<Route exact path="/addlens" element={<AddLens />} />
+									<Route exact path="/updatelens/:lensId" element={<UpdateLens />} />
+									<Route exact path="/showalllensesadmin" element={<ShowAllLensesAdmin />} />
+								</>
+							) : undefined}
+						</>
+					) : (
+						<>
+							<Route exact path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+							<Route exact path="/addcustomer" element={<AddCustomer />} />
+						</>
+					)}
 				</Routes>
 			</Router>
 		</div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import FrameService from "../../services/FrameService"
-import FrameAdmin from "./FrameAdmin"
+import FrameService from "../../services/FrameService";
+import FrameAdmin from "./FrameAdmin";
 import { Button, Container } from "react-bootstrap";
 
 const ShowAllFramesAdmin = () => {
@@ -12,7 +12,7 @@ const ShowAllFramesAdmin = () => {
 		});
 	}, []);
 
-    return (
+	return (
 		<>
 			<Container
 				style={{
@@ -31,11 +31,7 @@ const ShowAllFramesAdmin = () => {
 				</Button>
 				<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
 					{frames.map((frame) => (
-						<FrameAdmin
-							key={frame.frameId}
-							frame={frame}
-							setFrames={setFrames}
-						/>
+						<FrameAdmin key={frame.frameId} frame={frame} setFrames={setFrames} />
 					))}
 				</Container>
 			</Container>

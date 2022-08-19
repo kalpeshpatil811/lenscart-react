@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import FrameService from "../../services/FrameService";
 import Frames from "./Frames";
-import { Container, CardGroup } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 const ShowAllFrames = () => {
 	const [frames, setFrames] = useState([]);
@@ -15,11 +15,9 @@ const ShowAllFrames = () => {
 	return (
 		<>
 			<Container style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
-				
-					{frames.map((frame) => (
-						<Frames key={frame.frameId} frame={frame} />
-					))}
-				
+				{frames.map((frame) => (
+					<Frames key={frame.frameId} frame={frame} />
+				))}
 			</Container>
 		</>
 	);

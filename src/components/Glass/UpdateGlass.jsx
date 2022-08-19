@@ -84,8 +84,13 @@ const UpdateGlass = () => {
 						/>
 					</FloatingLabel>
 					<FloatingLabel controlId="type" label="Type" className="mb-3">
-						<Form.Select type="text" aria-label="Floating label select example" value={type}
-							onChange={(e) => setType(e.target.value)} required>
+						<Form.Select
+							type="text"
+							aria-label="Floating label select example"
+							value={type}
+							onChange={(e) => setType(e.target.value)}
+							required
+						>
 							<option>Select Type</option>
 							<option value="zero power">Zero Power</option>
 							<option value="digital screen protection">Digital Screen Protection</option>
@@ -95,7 +100,7 @@ const UpdateGlass = () => {
 					</FloatingLabel>
 					<FloatingLabel controlId="powerRange" label="powerRange" className="mb-3">
 						<Form.Control
-							type="text"
+							type="number"
 							placeholder="Enter Power Range"
 							required
 							value={powerRange}
@@ -105,7 +110,7 @@ const UpdateGlass = () => {
 
 					<FloatingLabel controlId="glassImage" label="glassImage" className="mb-3">
 						<Form.Control
-							type="number"
+							type="text"
 							placeholder="Enter Image URL"
 							required
 							value={glassImage}
